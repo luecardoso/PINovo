@@ -150,21 +150,35 @@ public class Run {
                 "|",inimigo[3]," |");
         System.out.println("---------------------------------");
     }
-    
     /**
      * 
      */
+    public static void armar(){
+        System.out.printf("| %21s%5s\n","Nome da Arma","|");
+        System.out.println("------------------------");
+        System.out.printf("| Vida: %14s%2s\n",getVida()," |");
+        System.out.printf("| Ataque: %10s%4s\n",getAtaque()," |");
+        System.out.printf("| Defesa: %10s%4s\n",getDefesa()," |");
+        System.out.printf("| Inteligência: %4s%4s\n",getInteligencia()," |");
+        System.out.println("------------------------");
+    }
+    /**
+     * 
+     */
+    //Capitulo 1
     public static void inicioHistoria(){
         System.out.println("A história começa...");
         personagem();
-        inicio();
+        armar();
+        inicioCapituloUm();
+        inicioCapituloDois();
     }
     
     /**
      * 
      */
     //1.0
-    public static void inicio(){
+    public static void inicioCapituloUm(){
         String escolha;
         do{ 
             System.out.println("Caminho Inicio");
@@ -339,8 +353,8 @@ public class Run {
             System.out.println("Correr para a Estrada");
             System.out.println("Acha um pau");
             System.out.println("Luta");
-        
-       lutar();
+            lutar();
+            decisaoEstrada();
     }
     
     /**
@@ -413,6 +427,153 @@ public class Run {
         }//Fim Luta
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //Capitulo 2
+    /**
+     * 
+     * @param args 
+     */
+    public static void inicioCapituloDois(){
+        esperarTempo(1500);
+        System.out.println("\n\n\n\n\n\n\n");
+        String escolha;
+        do{ 
+            System.out.println("Caminho Inicio Personagem 2");
+            System.out.println("Acorda e vê um corpo entre os fenos(pers1)");
+            System.out.println("O que deseja fazer? ");
+            System.out.println("A) Investigar o corpo");
+            System.out.println("B) Buscar ajuda na casa da frente");
+            escolha = entrada.next();
+        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+       if(escolha.equalsIgnoreCase("A")){
+           investigarCorpo();
+       }else{
+           buscarAjuda();
+       }
+    }
+    /**
+     * 
+     * @param args 
+     */
+    public static void investigarCorpo(){
+        System.out.println("Escuta barulhos na casa e vai lá");
+        System.out.println("quando chega proximo ve alguem fugindo pela\n"
+                + " estrada e logo em seguida sendo morto");
+        System.out.println("");
+        levarPrisioneiros();
+    }
+    
+    /**
+     * 
+     * @param args 
+     */
+    public static void buscarAjuda(){
+        System.out.println("Encontra pessoas");
+        System.out.println("resumo de uma luta e ele é pego e amarrado\n"
+                + " (dialogos)");
+        String escolha;
+        do{ 
+            System.out.println("caminho casa ");
+            System.out.println("Escolher frase");
+            System.out.println("O que vai dizer? ");
+            System.out.println("A) blablabla");
+            System.out.println("B) nanana");
+            escolha = entrada.next();
+        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+       if(escolha.equalsIgnoreCase("A")){
+           ajudarPersonagem();
+       }else{
+          esconderCasa();
+       }
+    }
+    /**
+     * 
+     */
+    public static void ajudarPersonagem(){
+        System.out.println("todos vão juntos");
+        levarPrisioneiros();
+    }
+    
+    /**
+     * 
+     */
+    public static void esconderCasa(){
+        System.out.println("Personagens da casa se escondem");
+        levarPrisioneiros();
+    }
+    /**
+     * 
+     */
+    public static void levarPrisioneiros(){
+        System.out.println("Leva um clarão e é levado");
+        System.out.println("Visão do personagem 2 do laboratorio");
+        System.out.println("conta um pouco da historia do laboratorio\n"
+                + " e ve o pessoal daquela casa sofrendo os experimentos");
+        System.out.println("az o teste em alguem nao da certo prende numa \n"
+                + "jaula pra depois transformar em animal, ai vira um urso e zn"
+                + "começa a quebrar as coisas, os ajudantes vão atrás, estãozn"
+                + " presos mas depois se soltam(talvez o urso)");
+        String escolha;
+        do{ 
+            System.out.println("caminho laboratorio ");
+            System.out.println("Escolher direção pra sair");
+            System.out.println("Pra onde vai? ");
+            System.out.println("A) Direita");
+            System.out.println("B) Esquerda");
+            escolha = entrada.next();
+        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+       if(escolha.equalsIgnoreCase("A")){
+           direitaLaboratorio();
+       }else{
+          esquerdaLaboratorio();
+       }
+    }
+    /**
+     * 
+     */
+    public static void direitaLaboratorio(){
+        System.out.println("Luta com uns guardas");
+        System.out.println("Criar esses personagns para a luta e colocar a luta");
+        sairLaboratorio();
+    }
+    /**
+     * 
+     */
+    public static void esquerdaLaboratorio(){
+        System.out.println("urso quebra a parede e pega os guardas sem luta");
+        sairLaboratorio();
+    }
+    /**
+     * 
+     */
+    public static void sairLaboratorio(){
+        System.out.println("passa por uma sala e acha um mapa holografico com\n"
+                + " a nave e contexto++");
+        System.out.println("familia -1, foge e vai para a saída da cidade");
+        System.out.println("ve o portao aberto começando a se fechar olha pro\n"
+                + " lado ve que pegaram o lobo e corre ");
+        System.out.println("");
+        portao();
+    }
+    /**
+     * 
+     */
+    public static void portao(){
+        System.out.println("ATO 3");
+    }
+    /**
+     * 
+     * @param args 
+     */
     public static void main(String[] args) {
        System.out.println(" "
                + " _____        __ _       _ _         \n" +

@@ -1,4 +1,8 @@
 package Game;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -20,22 +24,27 @@ public class Run {
     public static float getVida(){
         return jogador[0];
     }
+    
     // retorna o ataque do jogador
     public static float getAtaque(){
         return jogador[1];
     }
+    
     // retorna a defesa do jogador
     public static float getDefesa(){
         return jogador[2];
     }
+    
     // retorna a inteligencia do jogador
     public static float getInteligencia(){
         return jogador[3];
     }
+    
     // retorna a vida MAXIMA do jogador
     public static float getMaxVida(){
         return jogador[4];
     }
+    
     //incrementar 
     public static void setVida(float valor){
         jogador[0] += valor;
@@ -44,17 +53,21 @@ public class Run {
         }
     }
     
+    
     public static void setAtaque(float valor){
         jogador[1] += valor;    
     }
+    
     
     public static void setDefesa(float valor){
         jogador[2] += valor; 
     }
     
+    
     public static void setInteligencia(float valor){
         jogador[3] += valor;
     }
+    
     
     public static void ataque(float[] atacante, float[] atacado, boolean def){
         Random r = new Random();
@@ -84,6 +97,30 @@ public class Run {
             }
         }
     }
+    
+    /**
+     * 
+     * @param inimigo 
+     */
+    public static void esperarTempo(int valor){
+        try {
+            Thread.sleep(valor);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
+     * 
+     */
+    static String mandarMensagem(){
+        List palavras = new ArrayList();
+        palavras.add("Voce foi derrotado");
+        palavras.add("");
+        Collections.shuffle(palavras);
+        return ""+ palavras.get(0);
+    }
+    
     /**
      * Descricao do personagem e suas habilidades
      */
@@ -95,14 +132,11 @@ public class Run {
         System.out.printf("| Defesa: %10s%4s\n",getDefesa()," |");
         System.out.printf("| Inteligência: %4s%4s\n",getInteligencia()," |");
         System.out.println("------------------------");
+       
     }
-    
+     
     static void barraDeEstatos(float[] inimigo){
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        esperarTempo(2000);
         System.out.println("\n\n\n\n\n\n\n\n\n");
         System.out.println("---------------------------------");
         System.out.printf("| %21s%2s%5s%2s\n","jogador","|","Inimigo","|");
@@ -116,6 +150,7 @@ public class Run {
                 "|",inimigo[3]," |");
         System.out.println("---------------------------------");
     }
+    
     /**
      * 
      */
@@ -124,6 +159,7 @@ public class Run {
         personagem();
         inicio();
     }
+    
     /**
      * 
      */
@@ -143,6 +179,7 @@ public class Run {
            irParaEstrada();
        }
     }
+    
     //1.1
     public static void investigarCasa(){
        String escolha;
@@ -159,6 +196,7 @@ public class Run {
            decisaoEstrada();
        }
     }
+    
     //1.1.1
     public static void dentroCasa(){
         
@@ -179,11 +217,83 @@ public class Run {
            esquerdoEstrada();
        }
     }
+    //Caminho direito estrada;
     public static void direitoEstrada(){
-        System.out.println("Direito estrada");
+        System.out.println("Direito estrada - Floresta");
+        String escolha;
+        do{ 
+            System.out.println("uma néveoa pela manha cobre a floresta ouve barulhos");
+            System.out.println("o que deseja fazer? ");
+            System.out.println("A) Investigar");
+            System.out.println("B) Seguir em frente");
+            escolha = entrada.next();
+        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+       if(escolha.equalsIgnoreCase("A")){
+           investigarArbusto();
+       }else{
+           acharRio();
+           
+       }
     }
+    public static void acharRio(){
+        System.out.println("Achando o Rio");
+        String escolha;
+        do{ 
+            System.out.println("acha o rio");
+            System.out.println("o que deseja fazer? ");
+            System.out.println("A) Atravessar");
+            System.out.println("B) Seguir o caminho do rio por onde esta");
+            escolha = entrada.next();
+        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+       if(escolha.equalsIgnoreCase("A")){
+           System.out.println("cai e ele segue  a corrente do rio");
+           chegarCidade();
+       }else{
+           System.out.println("acha um barco de alguem");
+           chegarCidade();
+       }
+    }
+    public static void chegarCidade(){
+        System.out.println("Chegando na cidade");
+    }
+    public static void investigarArbusto(){
+        System.out.println("Investigando o arbusto");
+        System.out.println("Luta");
+        System.out.println("Ganhando vai para o rio");
+    }
+    
+    //Caminho esquerdo estrada;
     public static void esquerdoEstrada(){
-        System.out.println("Esquerdo estrada");
+        System.out.println("Esquerdo estrada - Montanha");
+        
+        String escolha;
+        do{ 
+            System.out.println("em direcao à montanha encontra um  \n" +
+                                "vilarejo onde escuta um barulho m uma casa");
+            System.out.println("para qual casa deseja ir? ");
+            System.out.println("A) Com Barulho");
+            System.out.println("B) Sem Barulho");
+            escolha = entrada.next();
+        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+       if(escolha.equalsIgnoreCase("A")){
+          casaBarulho();
+       }else{
+           casaSemBarulho();
+       }
+    }
+    
+    public static void casaBarulho(){
+        System.out.println("Casa com barulho");
+        System.out.println("Dentro da casa acha suprimentos e \n"
+                + "decide ir na outra casa");
+        casaSemBarulho();
+    }
+    public static void casaSemBarulho(){
+        System.out.println("Casa Sem Barulho");
+        System.out.println("Acha  um corpo e é atacado pelo povo da montanha");
+        System.out.println("escapa  e encontra um homem numa carruagem");
+        System.out.println("atacados por um bicho e corre para a cidade");
+        chegarCidade();
     }
     //1.2
     public static void irParaEstrada(){
@@ -207,78 +317,7 @@ public class Run {
         System.out.println("Correr para a Casa");
         System.out.println("Acha e pega um machado");
         System.out.println("Luta");
-        //Luta
-        boolean lutando = true;
-        //True Player, False Inimgo
-        boolean turno = true;
-        //
-        inimigoUm[0] = 100;
-        Random r = new Random();
-        while(lutando){
-            barraDeEstatos(inimigoUm);
-            int leitor;
-            if(turno){
-                do{
-                System.out.println("Sua Vez: 1- para Atacar, 2- para Defender");
-                leitor = entrada.nextInt();
-                    if(leitor == 1){
-                    //Ataca
-                        System.out.println("Atacando");
-                        ataque(jogador, inimigoUm, defendendoInimigoUm );
-                    }else if(leitor == 2){
-                    //Defende
-                        System.out.println("Defendendo");
-                        defendendoJogador = true;
-                    }
-                }while(leitor != 1 && leitor != 2);
-                turno =! turno;
-            }else{
-                System.out.println("Vez do Adiversario");
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                int resultado = r.nextInt(100);
-                if(resultado < 24){
-                    leitor = 2;
-                }else{
-                    leitor = 1;
-                }
-                if(leitor == 1){
-                //Ataca
-                    System.out.println("Adiversario Atacou");
-                    ataque(inimigoUm,jogador, defendendoJogador);
-                }else if(leitor == 2){
-                //Defende
-                    System.out.println("Adiversario Defendeu");
-                    defendendoInimigoUm = true;
-                }
-                turno =! turno;
-            }
-            defendendoJogador = false;
-            defendendoInimigoUm = false;
-            if(getVida() <= 0){
-                lutando = false;
-                System.out.println("Voce è um Perdedor, Comece de novo");
-            }else if(inimigoUm[0] <= 0){
-                lutando= false;
-                System.out.println("Voce lutou bravamente e venceu e seu orulho"
-                        + " fez com que sua vida regenerace 50 pontos, "
-                        + "alem de ficar mais forte");
-                setVida(50);
-                setAtaque(1);
-                setDefesa(1);
-                setInteligencia(1);
-                personagem();
-                decisaoEstrada();
-            }
-            try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }//Fim Luta
+        lutar();
     }
     //1.2.1.2
     public static void esperarCasa(){
@@ -301,7 +340,14 @@ public class Run {
             System.out.println("Acha um pau");
             System.out.println("Luta");
         
-        //Luta
+       lutar();
+    }
+    
+    /**
+     * 
+     */
+    static void lutar(){
+         //Luta
         boolean lutando = true;
         //True Player, False Inimgo
         boolean turno = true;
@@ -328,11 +374,7 @@ public class Run {
                 turno =! turno;
             }else{
                 System.out.println("Vez do Adiversario");
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                esperarTempo(2000);
                 int resultado = r.nextInt(100);
                 if(resultado < 24){
                     leitor = 2;
@@ -367,18 +409,28 @@ public class Run {
                 personagem();
                 direitoEstrada();
             }
-            try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            esperarTempo(2000);
         }//Fim Luta
     }
+    
     public static void main(String[] args) {
-       System.out.println("");
+       System.out.println(" "
+               + " _____        __ _       _ _         \n" +
+            " |_   _|      / _(_)     (_) |        \n" +
+            "   | |  _ __ | |_ _ _ __  _| |_ _   _ \n" +
+            "   | | | '_ \\|  _| | '_ \\| | __| | | |\n" +
+            "  _| |_| | | | | | | | | | | |_| |_| |\n" +
+            " |_____|_| |_|_| |_|_| |_|_|\\__|\\__, |\n" +
+            "  / __ \\    | |                  __/ |\n" +
+            " | |  | | __| |_ ___ ___  ___ _ |___/ \n" +
+            " | |  | |/ _` | / __/ __|/ _ \\ | | |  \n" +
+            " | |__| | (_| | \\__ \\__ \\  __/ |_| |  \n" +
+            "  \\____/ \\__,_|_|___/___/\\___|\\__, |  \n" +
+            "                               __/ |  \n" +
+            "                              |___/   ");
        inicioHistoria();
         //correrCasa();
-       
+        System.out.println("");
        
     }
     

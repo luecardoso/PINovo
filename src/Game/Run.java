@@ -304,8 +304,11 @@ public class Run {
     }
     public static void casaSemBarulho(){
         System.out.println("Casa Sem Barulho");
+        esperarTempo(3000);
         System.out.println("Acha  um corpo e é atacado pelo povo da montanha");
+        esperarTempo(2000);
         System.out.println("escapa  e encontra um homem numa carruagem");
+        esperarTempo(3000);
         System.out.println("atacados por um bicho e corre para a cidade");
         chegarCidade();
     }
@@ -331,7 +334,7 @@ public class Run {
         System.out.println("Correr para a Casa");
         System.out.println("Acha e pega um machado");
         System.out.println("Luta");
-        lutar();
+        lutar(inimigoUm, defendendoInimigoUm);
     }
     //1.2.1.2
     public static void esperarCasa(){
@@ -353,23 +356,23 @@ public class Run {
             System.out.println("Correr para a Estrada");
             System.out.println("Acha um pau");
             System.out.println("Luta");
-            lutar();
+            lutar(inimigoUm, defendendoInimigoUm);
             decisaoEstrada();
     }
     
     /**
      * 
      */
-    static void lutar(){
+    static void lutar(float[] inimigo, boolean inimigoDef){
          //Luta
         boolean lutando = true;
         //True Player, False Inimgo
         boolean turno = true;
         //
-        inimigoUm[0] = 100;
+        inimigo[0] = 100;
         Random r = new Random();
         while(lutando){
-            barraDeEstatos(inimigoUm);
+            barraDeEstatos(inimigo);
             int leitor;
             if(turno){
                 do{
@@ -378,7 +381,7 @@ public class Run {
                     if(leitor == 1){
                     //Ataca
                         System.out.println("Atacando");
-                        ataque(jogador, inimigoUm, defendendoInimigoUm );
+                        ataque(jogador, inimigo, inimigoDef );
                     }else if(leitor == 2){
                     //Defende
                         System.out.println("Defendendo");
@@ -398,20 +401,20 @@ public class Run {
                 if(leitor == 1){
                 //Ataca
                     System.out.println("Adiversario Atacou");
-                    ataque(inimigoUm,jogador, defendendoJogador);
+                    ataque(inimigo,jogador, inimigoDef);
                 }else if(leitor == 2){
                 //Defende
                     System.out.println("Adiversario Defendeu");
-                    defendendoInimigoUm = true;
+                    inimigoDef = true;
                 }
                 turno =! turno;
             }
             defendendoJogador = false;
-            defendendoInimigoUm = false;
+            inimigoDef = false;
             if(getVida() <= 0){
                 lutando = false;
                 System.out.println("Voce è um Perdedor, Comece de novo");
-            }else if(inimigoUm[0] <= 0){
+            }else if(inimigo[0] <= 0){
                 lutando= false;
                 System.out.println("Voce lutou bravamente e venceu e seu orulho"
                         + " fez com que sua vida regenerace 50 pontos, "

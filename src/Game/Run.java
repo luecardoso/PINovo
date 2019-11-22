@@ -573,6 +573,18 @@ public class Run {
     public static void portao(){
         System.out.println("ATO 3");
     }
+    
+    public static void instrucao(){
+        System.out.println("intrucao do jogo");
+    }
+    
+    public static void creditos(){
+        System.out.println("Infinity Odissey foi desenvovido por:\n\n");
+        System.out.println(" - Gabriel\n");
+        System.out.println(" - Lucas\n");
+        System.out.println(" - Rogerio Sartori Lucon\n");
+        System.out.println("Versao: 0.0.15");
+    }
     /**
      * 
      * @param args 
@@ -613,9 +625,23 @@ public class Run {
         System.out.printf("|------------- %10s%20s\n", "","-------------|");
         System.out.println("|-------------------------------------------|");
         System.out.println("|-------------------------------------------|");
-        esperarTempo(10);
-        while(true){
-            break;
+        boolean flag = true;
+        while(flag){
+            int escolha = entrada.nextInt();
+            switch(escolha){
+                case 1:
+                    inicioHistoria();
+                    break;
+                case 2:
+                    instrucao();
+                    break;
+                case 3:
+                    creditos();
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+            }
         }
        
         inicioHistoria();

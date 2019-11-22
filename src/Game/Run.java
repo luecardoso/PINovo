@@ -1,4 +1,5 @@
 package Game;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -186,7 +187,7 @@ public class Run {
             System.out.println("A) Investigar a casa");
             System.out.println("B) Ir para a estrada");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            investigarCasa();
        }else{
@@ -203,7 +204,7 @@ public class Run {
             System.out.println("A) Sim");
             System.out.println("B) Não");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            decisaoEstrada();
        }else{
@@ -224,7 +225,7 @@ public class Run {
             System.out.println("A) Direita");
             System.out.println("B) Esquerda");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            direitoEstrada();
        }else{
@@ -241,7 +242,7 @@ public class Run {
             System.out.println("A) Investigar");
             System.out.println("B) Seguir em frente");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            investigarArbusto();
        }else{
@@ -258,7 +259,7 @@ public class Run {
             System.out.println("A) Atravessar");
             System.out.println("B) Seguir o caminho do rio por onde esta");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            System.out.println("cai e ele segue  a corrente do rio");
            chegarCidade();
@@ -288,7 +289,7 @@ public class Run {
             System.out.println("A) Com Barulho");
             System.out.println("B) Sem Barulho");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
           casaBarulho();
        }else{
@@ -321,7 +322,7 @@ public class Run {
             System.out.println("A) Correr para a Casa");
             System.out.println("B) Correr para a Estrada");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            correrCasa();
        }else{
@@ -344,7 +345,7 @@ public class Run {
             System.out.println("Amanhece");
             decisaoEstrada();
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            
        }else{
@@ -456,7 +457,7 @@ public class Run {
             System.out.println("A) Investigar o corpo");
             System.out.println("B) Buscar ajuda na casa da frente");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            investigarCorpo();
        }else{
@@ -491,7 +492,7 @@ public class Run {
             System.out.println("A) blablabla");
             System.out.println("B) nanana");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            ajudarPersonagem();
        }else{
@@ -533,7 +534,7 @@ public class Run {
             System.out.println("A) Direita");
             System.out.println("B) Esquerda");
             escolha = entrada.next();
-        }while(!escolha.equalsIgnoreCase("A")&&!escolha.equalsIgnoreCase("B"));
+        }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            direitaLaboratorio();
        }else{
@@ -576,6 +577,9 @@ public class Run {
     
     public static void instrucao(){
         System.out.println("intrucao do jogo");
+        
+        System.out.println("Enter Para voltar ao menu");
+        entrada.next();
     }
     
     public static void creditos(){
@@ -583,13 +587,35 @@ public class Run {
         System.out.println(" - Gabriel\n");
         System.out.println(" - Lucas\n");
         System.out.println(" - Rogerio Sartori Lucon\n");
-        System.out.println("Versao: 0.0.15");
+        System.out.println("Versao: 0.0.15\n");
+        System.out.println("Enter Para voltar ao menu");
+        entrada.next();
+    }
+    
+    public static boolean validaentrada(String entrada){
+        if(entrada.equalsIgnoreCase("A") || entrada.equalsIgnoreCase("B")){
+            return true;
+        }else if(entrada.equalsIgnoreCase("exit") 
+                || entrada.equalsIgnoreCase("sair")){
+            //Chamar opçao de salvar
+            System.exit(0);
+            return false;
+        }else{
+            return false;
+        }    
     }
     /**
      * 
      * @param args 
      */
     public static void main(String[] args) {
+        //teste
+        System.out.println("Carregando");
+        for(int i = 0; i <10; i++){
+            System.out.print("|");
+            esperarTempo(0.3f);
+        }
+        System.out.println("");
         // Imagem Inicial
         System.out.println(" "
                + " _____        __ _       _ _         \n" +
@@ -611,22 +637,22 @@ public class Run {
             esperarTempo(0.2f);
             System.out.println("");
         }
-        System.out.println("|-------------------------------------------|");
-        System.out.println("|-------------------------------------------|");
-        System.out.printf("|------------- %10s%20s\n", "","-------------|");
-        System.out.printf("|------------- %10s%20s\n", "MENU","-------------|");
-        System.out.printf("|------------- %10s%20s\n", "","-------------|");
-        System.out.println("--------------------------------------------|");
-        System.out.printf("|------------- %10s%20s\n", "","-------------|");
-        System.out.printf("|------------- %4s%6s%20s\n", "1 -", "Jogar","-------------|");
-        System.out.printf("|------------- %4s%6s%16s\n", "2 -", "Instruçoes","-------------|");
-        System.out.printf("|------------- %4s%6s%19s\n", "3 -", "Credito","-------------|");
-        System.out.printf("|------------- %4s%6s%20s\n", "4 -", "Sair","-------------|");
-        System.out.printf("|------------- %10s%20s\n", "","-------------|");
-        System.out.println("|-------------------------------------------|");
-        System.out.println("|-------------------------------------------|");
         boolean flag = true;
         while(flag){
+            System.out.println("|-------------------------------------------|");
+            System.out.println("|-------------------------------------------|");
+            System.out.printf("|------------- %10s%20s\n", "","-------------|");
+            System.out.printf("|------------- %10s%20s\n", "MENU","-------------|");
+            System.out.printf("|------------- %10s%20s\n", "","-------------|");
+            System.out.println("--------------------------------------------|");
+            System.out.printf("|------------- %10s%20s\n", "","-------------|");
+            System.out.printf("|------------- %4s%6s%20s\n", "1 -", "Jogar","-------------|");
+            System.out.printf("|------------- %4s%6s%16s\n", "2 -", "Instruçoes","-------------|");
+            System.out.printf("|------------- %4s%6s%19s\n", "3 -", "Credito","-------------|");
+            System.out.printf("|------------- %4s%6s%20s\n", "4 -", "Sair","-------------|");
+            System.out.printf("|------------- %10s%20s\n", "","-------------|");
+            System.out.println("|-------------------------------------------|");
+            System.out.println("|-------------------------------------------|");
             int escolha = entrada.nextInt();
             switch(escolha){
                 case 1:

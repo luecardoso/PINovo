@@ -1,5 +1,4 @@
 package Game;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -102,9 +101,10 @@ public class Run {
      * 
      * @param inimigo 
      */
-    public static void esperarTempo(int valor){
+    public static void esperarTempo(float valor){
+        int aux =(int) (valor * 1000);
         try {
-            Thread.sleep(valor);
+            Thread.sleep(aux);
         } catch (InterruptedException ex) {
             Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -136,7 +136,7 @@ public class Run {
     }
      
     static void barraDeEstatos(float[] inimigo){
-        esperarTempo(2000);
+        esperarTempo(2);
         System.out.println("\n\n\n\n\n\n\n\n\n");
         System.out.println("---------------------------------");
         System.out.printf("| %21s%2s%5s%2s\n","jogador","|","Inimigo","|");
@@ -304,11 +304,11 @@ public class Run {
     }
     public static void casaSemBarulho(){
         System.out.println("Casa Sem Barulho");
-        esperarTempo(3000);
+        esperarTempo(3);
         System.out.println("Acha  um corpo e é atacado pelo povo da montanha");
-        esperarTempo(2000);
+        esperarTempo(2);
         System.out.println("escapa  e encontra um homem numa carruagem");
-        esperarTempo(3000);
+        esperarTempo(3);
         System.out.println("atacados por um bicho e corre para a cidade");
         chegarCidade();
     }
@@ -391,7 +391,7 @@ public class Run {
                 turno =! turno;
             }else{
                 System.out.println("Vez do Adiversario");
-                esperarTempo(2000);
+                esperarTempo(2);
                 int resultado = r.nextInt(100);
                 if(resultado < 24){
                     leitor = 2;
@@ -426,7 +426,7 @@ public class Run {
                 personagem();
                 direitoEstrada();
             }
-            esperarTempo(2000);
+            esperarTempo(2);
         }//Fim Luta
     }
     
@@ -446,7 +446,7 @@ public class Run {
      * @param args 
      */
     public static void inicioCapituloDois(){
-        esperarTempo(1500);
+        esperarTempo(1.5f);
         System.out.println("\n\n\n\n\n\n\n");
         String escolha;
         do{ 
@@ -578,7 +578,8 @@ public class Run {
      * @param args 
      */
     public static void main(String[] args) {
-       System.out.println(" "
+        // Imagem Inicial
+        System.out.println(" "
                + " _____        __ _       _ _         \n" +
             " |_   _|      / _(_)     (_) |        \n" +
             "   | |  _ __ | |_ _ _ __  _| |_ _   _ \n" +
@@ -592,7 +593,32 @@ public class Run {
             "  \\____/ \\__,_|_|___/___/\\___|\\__, |  \n" +
             "                               __/ |  \n" +
             "                              |___/   ");
-       inicioHistoria();
+        // Menu Inicial
+        esperarTempo(1);
+        for (int i = 0; i < 10; i++) {
+            esperarTempo(0.2f);
+            System.out.println("");
+        }
+        System.out.println("|-------------------------------------------|");
+        System.out.println("|-------------------------------------------|");
+        System.out.printf("|------------- %10s%20s\n", "","-------------|");
+        System.out.printf("|------------- %10s%20s\n", "MENU","-------------|");
+        System.out.printf("|------------- %10s%20s\n", "","-------------|");
+        System.out.println("--------------------------------------------|");
+        System.out.printf("|------------- %10s%20s\n", "","-------------|");
+        System.out.printf("|------------- %4s%6s%20s\n", "1 -", "Jogar","-------------|");
+        System.out.printf("|------------- %4s%6s%16s\n", "2 -", "Instruçoes","-------------|");
+        System.out.printf("|------------- %4s%6s%19s\n", "3 -", "Credito","-------------|");
+        System.out.printf("|------------- %4s%6s%20s\n", "4 -", "Sair","-------------|");
+        System.out.printf("|------------- %10s%20s\n", "","-------------|");
+        System.out.println("|-------------------------------------------|");
+        System.out.println("|-------------------------------------------|");
+        esperarTempo(10);
+        while(true){
+            break;
+        }
+       
+        inicioHistoria();
         //correrCasa();
         System.out.println("");
        

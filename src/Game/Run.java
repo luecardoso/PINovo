@@ -18,7 +18,8 @@ public class Run {
     static float[] inimigoUm = {100f,3f,3f,2f, 100f};
     static boolean defendendoInimigoUm = false;
     static Scanner entrada = new Scanner(System.in);
-    
+    //Salva a ultima cena
+    static int cena = 0;
     //[0] = vida, [1] = Ataque, [2] = Defesa, [3] = inteligencia, [4] = MaxVida
     // retorna a vida do jogador
     public static float getVida(){
@@ -180,6 +181,7 @@ public class Run {
      */
     //1.0
     public static void inicioCapituloUm(){
+        cena = 1;
         String escolha;
         do{ 
             System.out.println("Caminho Inicio");
@@ -197,7 +199,8 @@ public class Run {
     
     //1.1
     public static void investigarCasa(){
-       String escolha;
+        cena = 2;
+        String escolha;
         do{ 
             System.out.println("Caminho investigarCasa");
             System.out.println("Você deseja pegar o machado? ");
@@ -214,10 +217,12 @@ public class Run {
     
     //1.1.1
     public static void dentroCasa(){
+        cena = 3;
         
     }
     //1.1.1.1 
     public static void decisaoEstrada(){
+        cena = 4;
         String escolha;
         do{ 
             System.out.println("Caminho Decisao Estrada");
@@ -234,6 +239,7 @@ public class Run {
     }
     //Caminho direito estrada;
     public static void direitoEstrada(){
+        cena = 5;
         System.out.println("Direito estrada - Floresta");
         String escolha;
         do{ 
@@ -251,6 +257,7 @@ public class Run {
        }
     }
     public static void acharRio(){
+        cena = 6;
         System.out.println("Achando o Rio");
         String escolha;
         do{ 
@@ -269,9 +276,11 @@ public class Run {
        }
     }
     public static void chegarCidade(){
+        cena = 7;
         System.out.println("Chegando na cidade");
     }
     public static void investigarArbusto(){
+        cena = 8;
         System.out.println("Investigando o arbusto");
         System.out.println("Luta");
         System.out.println("Ganhando vai para o rio");
@@ -279,6 +288,7 @@ public class Run {
     
     //Caminho esquerdo estrada;
     public static void esquerdoEstrada(){
+        cena = 9;
         System.out.println("Esquerdo estrada - Montanha");
         
         String escolha;
@@ -298,12 +308,14 @@ public class Run {
     }
     
     public static void casaBarulho(){
+        cena = 10;
         System.out.println("Casa com barulho");
         System.out.println("Dentro da casa acha suprimentos e \n"
                 + "decide ir na outra casa");
         casaSemBarulho();
     }
     public static void casaSemBarulho(){
+        cena = 11;
         System.out.println("Casa Sem Barulho");
         esperarTempo(3);
         System.out.println("Acha  um corpo e é atacado pelo povo da montanha");
@@ -315,6 +327,7 @@ public class Run {
     }
     //1.2
     public static void irParaEstrada(){
+        cena = 12;
         String escolha;
         do{ 
             System.out.println("Caminho decisao casa ou estrada");
@@ -332,6 +345,7 @@ public class Run {
     
     //1.2.1.1//luta
     public static void correrCasa(){
+        cena = 13;
         System.out.println("Correr para a Casa");
         System.out.println("Acha e pega um machado");
         System.out.println("Luta");
@@ -339,6 +353,7 @@ public class Run {
     }
     //1.2.1.2
     public static void esperarCasa(){
+        cena = 14;
         String escolha;
         do{ 
             System.out.println("Espera em casa");
@@ -354,11 +369,12 @@ public class Run {
     }
     //1.2.1.2 
     public static void correrEstrada(){
-            System.out.println("Correr para a Estrada");
-            System.out.println("Acha um pau");
-            System.out.println("Luta");
-            lutar(inimigoUm, defendendoInimigoUm);
-            decisaoEstrada();
+        cena = 15;
+        System.out.println("Correr para a Estrada");
+        System.out.println("Acha um pau");
+        System.out.println("Luta");
+        lutar(inimigoUm, defendendoInimigoUm);
+        decisaoEstrada();
     }
     
     /**
@@ -430,7 +446,7 @@ public class Run {
             esperarTempo(2);
         }//Fim Luta
     }
-    
+    //15 Cenas
     
     
     

@@ -604,18 +604,27 @@ public class Run {
             return false;
         }    
     }
+    
+    public static void espacar(int linhas, boolean delay){
+        for (int i = 0; i < linhas; i++) {
+            if(delay){
+                esperarTempo(0.2f);
+            }
+            System.out.println("");
+        }
+    }
     /**
      * 
      * @param args 
      */
     public static void main(String[] args) {
         //teste
-        System.out.println("Carregando");
+        System.out.print("Carregando: ");
         for(int i = 0; i <10; i++){
             System.out.print("|");
             esperarTempo(0.3f);
         }
-        System.out.println("");
+        espacar(10, true);
         // Imagem Inicial
         System.out.println(" "
                + " _____        __ _       _ _         \n" +
@@ -632,11 +641,10 @@ public class Run {
             "                               __/ |  \n" +
             "                              |___/   ");
         // Menu Inicial
-        esperarTempo(1);
-        for (int i = 0; i < 10; i++) {
-            esperarTempo(0.2f);
-            System.out.println("");
-        }
+        System.out.println("Entre qualquer valor para continuar");
+        entrada.next();
+        espacar(10, true);
+        
         boolean flag = true;
         while(flag){
             System.out.println("|-------------------------------------------|");
@@ -656,6 +664,7 @@ public class Run {
             int escolha = entrada.nextInt();
             switch(escolha){
                 case 1:
+                    espacar(10, false);
                     inicioHistoria();
                     break;
                 case 2:

@@ -1,12 +1,19 @@
 package Game;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author lucas.creis2
@@ -614,7 +621,27 @@ public class Run {
         }else if(entrada.equalsIgnoreCase("exit") 
                 || entrada.equalsIgnoreCase("sair")){
             //Chamar opçao de salvar
-            System.exit(0);
+            Object[] options = { "Salvar e sair", "Sair sem salvar"}; 
+            int aux = JOptionPane.showOptionDialog(null,
+                    "Deseja sair do jogo?", "Deseja sair do jogo?",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                    null, options, options[0]);
+            //Fecha o programa
+            if(aux == 0){
+                System.out.println(aux);
+                salvar();
+                System.exit(0);
+            }else if(aux == 1){
+                System.out.println(aux);
+                System.exit(0);
+            }
+            return false;
+        }else if(entrada.equalsIgnoreCase("salvar")){
+            salvar();
+            return false;
+        }else if(entrada.equalsIgnoreCase("carregar")){
+            carregar();
+            chamaCena(cena);
             return false;
         }else{
             return false;
@@ -627,6 +654,53 @@ public class Run {
                 esperarTempo(0.2f);
             }
             System.out.println("");
+        }
+    }
+    
+    public static boolean carregar(){
+        try {
+            FileReader fr = new FileReader("save.txt");
+            BufferedReader bf = new BufferedReader(fr);
+            String txtStatus = bf.readLine();
+            txtStatus = txtStatus.replace('[', ' ').replace(']', ' ').replace(" ", "");
+            String[] aux = txtStatus.split(",");
+            for (int i = 0; i < aux.length; i++) {
+                jogador[i] = Float.parseFloat(aux[i]);
+            }
+            cena = Integer.parseInt(bf.readLine());
+
+            fr.close();
+            bf.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    public static void salvar(){
+        FileWriter arq;
+        try {
+            arq = new FileWriter("save.txt");
+            PrintWriter gravarArq = new PrintWriter(arq);
+            String txtStatus = Arrays.toString(jogador);
+            gravarArq.println(txtStatus);
+            gravarArq.println(cena);
+            
+            arq.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void chamaCena(int valor){
+        switch(valor){
+            case 1:
+                inicioCapituloUm();
+                break;
+            case 2:
+                investigarCasa();
+                break;
         }
     }
     /**
@@ -670,10 +744,11 @@ public class Run {
             System.out.printf("|------------- %10s%20s\n", "","-------------|");
             System.out.println("--------------------------------------------|");
             System.out.printf("|------------- %10s%20s\n", "","-------------|");
-            System.out.printf("|------------- %4s%6s%20s\n", "1 -", "Jogar","-------------|");
-            System.out.printf("|------------- %4s%6s%16s\n", "2 -", "Instruçoes","-------------|");
-            System.out.printf("|------------- %4s%6s%19s\n", "3 -", "Credito","-------------|");
-            System.out.printf("|------------- %4s%6s%20s\n", "4 -", "Sair","-------------|");
+            System.out.printf("|------------- %4s%6s%20s\n", "1 -", "Novo Jogo","-------------|");
+            System.out.printf("|------------- %4s%6s%20s\n", "2 -", "Carregar Jogo","-------------|");
+            System.out.printf("|------------- %4s%6s%16s\n", "3 -", "Instruçoes","-------------|");
+            System.out.printf("|------------- %4s%6s%19s\n", "4 -", "Credito","-------------|");
+            System.out.printf("|------------- %4s%6s%20s\n", "5 -", "Sair","-------------|");
             System.out.printf("|------------- %10s%20s\n", "","-------------|");
             System.out.println("|-------------------------------------------|");
             System.out.println("|-------------------------------------------|");
@@ -684,12 +759,19 @@ public class Run {
                     inicioHistoria();
                     break;
                 case 2:
-                    instrucao();
+                    if(carregar()){
+                        chamaCena(cena);
+                    }else{
+                        inicioHistoria();
+                    }
                     break;
                 case 3:
-                    creditos();
+                    instrucao();
                     break;
                 case 4:
+                    creditos();
+                    break;
+                case 5:
                     System.exit(0);
                     break;
             }

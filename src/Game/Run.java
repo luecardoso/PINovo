@@ -599,7 +599,11 @@ public class Run {
     }
     
     public static void instrucao(){
-        System.out.println("intrucao do jogo");
+        System.out.println("intrucao do jogo:");
+        
+        System.out.println("Digite 'Sair/Exit' para sair do jogo");
+        System.out.println("Digite 'Carregar' para carregar ultimo save");
+        System.out.println("Digite 'Save' para salvar o jogo");
         
         System.out.println("Enter Para voltar ao menu");
         entrada.next();

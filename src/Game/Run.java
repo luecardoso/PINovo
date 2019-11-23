@@ -705,6 +705,45 @@ public class Run {
             case 2:
                 investigarCasa();
                 break;
+            case 3:
+                dentroCasa();
+                break;
+            case 4:
+                decisaoEstrada();
+                break;
+            case 5:
+                direitoEstrada();
+                break;
+            case 6:
+                acharRio();
+                break;
+            case 7:
+                chegarCidade();
+                break;
+            case 8:
+                investigarArbusto();
+                break;
+            case 9:
+                esquerdoEstrada();
+                break;
+            case 10:
+                casaBarulho();
+                break;
+            case 11:
+                casaSemBarulho();
+                break;
+            case 12:
+                irParaEstrada();
+                break;
+            case 13:
+                correrCasa();
+                break;
+            case 14:
+                esperarCasa();
+                break;
+            case 15:
+                correrEstrada();
+                break;
         }
     }
     /**

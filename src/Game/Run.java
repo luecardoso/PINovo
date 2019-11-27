@@ -22,8 +22,39 @@ public class Run {
     //jogador vetor com suas habilidades
     static float[] jogador = {100f,3f,3f,5f, 100f};
     static boolean defendendoJogador = false;
+    
+    //Inimigo UM !
     static float[] inimigoUm = {100f,3f,3f,2f, 100f};
     static boolean defendendoInimigoUm = false;
+    
+    //Inimigo DOIS !
+    static float [] inimigoDois = { 100f,3f,3f,2f,100f};
+    static boolean defendendoInimigoDois = false;
+    
+    //Inimigo TRES !
+    static float []inimigoTres = {100f,3f,3f,2f,100f};
+    static boolean defendendoInimigoTres = false;
+    
+    //Inimigo Quatro !
+    static float []inimigoQuatro = {100f,3f,3f,2f,100f};
+    static boolean defendendoInimigoQuatro = false;
+    
+    //Inimigo CINCO !
+    static float []inimigoCinco = {100f,3f,3f,2f,100f};
+    static boolean defendendoInimigoCinco = false;
+    
+    //Inimigo SEIS !
+    static float []inimigoSeis = {100f,3f,3f,2f,100f};
+    static boolean defendendoInimigoSeis = false;
+    
+    //Inimigo SETE !
+    static float []inimigoSete = {100f,3f,3f,2f,100f};
+    static boolean defendendoInimigoSete = false;
+    
+    // BOOOSSSSSS !!!!!!!!!!
+    static float []boss = {100f,3f,3f,2f,100f};
+    static boolean defendendo_boss = false;
+    
     static Scanner entrada = new Scanner(System.in);
     //Salva a ultima cena
     static int cena = 0;
@@ -119,274 +150,7 @@ public class Run {
         }
     }
     
-    /**
-     * 
-     */
-    static String mandarMensagem(){
-        List palavras = new ArrayList();
-        palavras.add("Voce foi derrotado");
-        palavras.add("");
-        Collections.shuffle(palavras);
-        return ""+ palavras.get(0);
-    }
     
-    /**
-     * Descricao do personagem e suas habilidades
-     */
-    static void personagem(){
-        System.out.println("Habilidades");
-        System.out.println("------------------------");
-        System.out.printf("| Vida: %14s%2s\n",getVida()," |");
-        System.out.printf("| Ataque: %10s%4s\n",getAtaque()," |");
-        System.out.printf("| Defesa: %10s%4s\n",getDefesa()," |");
-        System.out.printf("| Inteligência: %4s%4s\n",getInteligencia()," |");
-        System.out.println("------------------------");
-       
-    }
-     
-    static void barraDeEstatos(float[] inimigo){
-        esperarTempo(2);
-        System.out.println("\n\n\n\n\n\n\n\n\n");
-        System.out.println("---------------------------------");
-        System.out.printf("| %21s%2s%5s%2s\n","jogador","|","Inimigo","|");
-        System.out.printf("| Vida: %14s%3s%6s%3s\n",getVida(),"|", inimigo[0],
-                " |");
-        System.out.printf("| Ataque: %10s%5s%5s%4s\n",getAtaque(),"|",
-                inimigo[1]," |");
-        System.out.printf("| Defesa: %10s%5s%5s%4s\n",getDefesa(),"|",
-                inimigo[2]," |");
-        System.out.printf("| Inteligência: %4s%5s%5s%4s\n",getInteligencia(),
-                "|",inimigo[3]," |");
-        System.out.println("---------------------------------");
-    }
-    /**
-     * 
-     */
-    public static void armar(){
-        System.out.printf("| %21s%5s\n","Nome da Arma","|");
-        System.out.println("------------------------");
-        System.out.printf("| Vida: %14s%2s\n",getVida()," |");
-        System.out.printf("| Ataque: %10s%4s\n",getAtaque()," |");
-        System.out.printf("| Defesa: %10s%4s\n",getDefesa()," |");
-        System.out.printf("| Inteligência: %4s%4s\n",getInteligencia()," |");
-        System.out.println("------------------------");
-    }
-    /**
-     * 
-     */
-    //Capitulo 1
-    public static void inicioHistoria(){
-        System.out.println("A história começa...");
-        personagem();
-        armar();
-        inicioCapituloUm();
-        inicioCapituloDois();
-    }
-    
-    /**
-     * 
-     */
-    //1.0
-    public static void inicioCapituloUm(){
-        cena = 1;
-        String escolha;
-        do{ 
-            System.out.println("Caminho Inicio");
-            System.out.println("Qual caminho deseja seguir? ");
-            System.out.println("A) Investigar a casa");
-            System.out.println("B) Ir para a estrada");
-            escolha = entrada.next();
-        }while(!validaentrada(escolha));
-       if(escolha.equalsIgnoreCase("A")){
-           investigarCasa();
-       }else{
-           irParaEstrada();
-       }
-    }
-    
-    //1.1
-    public static void investigarCasa(){
-        cena = 2;
-        String escolha;
-        do{ 
-            System.out.println("Caminho investigarCasa");
-            System.out.println("Você deseja pegar o machado? ");
-            System.out.println("A) Sim");
-            System.out.println("B) Não");
-            escolha = entrada.next();
-        }while(!validaentrada(escolha));
-       if(escolha.equalsIgnoreCase("A")){
-           decisaoEstrada();
-       }else{
-           decisaoEstrada();
-       }
-    }
-    
-    //1.1.1
-    public static void dentroCasa(){
-        cena = 3;
-        
-    }
-    //1.1.1.1 
-    public static void decisaoEstrada(){
-        cena = 4;
-        String escolha;
-        do{ 
-            System.out.println("Caminho Decisao Estrada");
-            System.out.println("Qual lado deseja ir? ");
-            System.out.println("A) Direita");
-            System.out.println("B) Esquerda");
-            escolha = entrada.next();
-        }while(!validaentrada(escolha));
-       if(escolha.equalsIgnoreCase("A")){
-           direitoEstrada();
-       }else{
-           esquerdoEstrada();
-       }
-    }
-    //Caminho direito estrada;
-    public static void direitoEstrada(){
-        cena = 5;
-        System.out.println("Direito estrada - Floresta");
-        String escolha;
-        do{ 
-            System.out.println("uma néveoa pela manha cobre a floresta ouve barulhos");
-            System.out.println("o que deseja fazer? ");
-            System.out.println("A) Investigar");
-            System.out.println("B) Seguir em frente");
-            escolha = entrada.next();
-        }while(!validaentrada(escolha));
-       if(escolha.equalsIgnoreCase("A")){
-           investigarArbusto();
-       }else{
-           acharRio();
-           
-       }
-    }
-    public static void acharRio(){
-        cena = 6;
-        System.out.println("Achando o Rio");
-        String escolha;
-        do{ 
-            System.out.println("acha o rio");
-            System.out.println("o que deseja fazer? ");
-            System.out.println("A) Atravessar");
-            System.out.println("B) Seguir o caminho do rio por onde esta");
-            escolha = entrada.next();
-        }while(!validaentrada(escolha));
-       if(escolha.equalsIgnoreCase("A")){
-           System.out.println("cai e ele segue  a corrente do rio");
-           chegarCidade();
-       }else{
-           System.out.println("acha um barco de alguem");
-           chegarCidade();
-       }
-    }
-    public static void chegarCidade(){
-        cena = 7;
-        System.out.println("Chegando na cidade");
-    }
-    public static void investigarArbusto(){
-        cena = 8;
-        System.out.println("Investigando o arbusto");
-        System.out.println("Luta");
-        System.out.println("Ganhando vai para o rio");
-    }
-    
-    //Caminho esquerdo estrada;
-    public static void esquerdoEstrada(){
-        cena = 9;
-        System.out.println("Esquerdo estrada - Montanha");
-        
-        String escolha;
-        do{ 
-            System.out.println("em direcao à montanha encontra um  \n" +
-                                "vilarejo onde escuta um barulho m uma casa");
-            System.out.println("para qual casa deseja ir? ");
-            System.out.println("A) Com Barulho");
-            System.out.println("B) Sem Barulho");
-            escolha = entrada.next();
-        }while(!validaentrada(escolha));
-       if(escolha.equalsIgnoreCase("A")){
-          casaBarulho();
-       }else{
-           casaSemBarulho();
-       }
-    }
-    
-    public static void casaBarulho(){
-        cena = 10;
-        System.out.println("Casa com barulho");
-        System.out.println("Dentro da casa acha suprimentos e \n"
-                + "decide ir na outra casa");
-        casaSemBarulho();
-    }
-    public static void casaSemBarulho(){
-        cena = 11;
-        System.out.println("Casa Sem Barulho");
-        esperarTempo(3);
-        System.out.println("Acha  um corpo e é atacado pelo povo da montanha");
-        esperarTempo(2);
-        System.out.println("escapa  e encontra um homem numa carruagem");
-        esperarTempo(3);
-        System.out.println("atacados por um bicho e corre para a cidade");
-        chegarCidade();
-    }
-    //1.2
-    public static void irParaEstrada(){
-        cena = 12;
-        String escolha;
-        do{ 
-            System.out.println("Caminho decisao casa ou estrada");
-            System.out.println("Qual caminho deseja seguir? ");
-            System.out.println("A) Correr para a Casa");
-            System.out.println("B) Correr para a Estrada");
-            escolha = entrada.next();
-        }while(!validaentrada(escolha));
-       if(escolha.equalsIgnoreCase("A")){
-           correrCasa();
-       }else{
-           correrEstrada();
-       }
-    }
-    
-    //1.2.1.1//luta
-    public static void correrCasa(){
-        cena = 13;
-        System.out.println("Correr para a Casa");
-        System.out.println("Acha e pega um machado");
-        System.out.println("Luta");
-        lutar(inimigoUm, defendendoInimigoUm);
-    }
-    //1.2.1.2
-    public static void esperarCasa(){
-        cena = 14;
-        String escolha;
-        do{ 
-            System.out.println("Espera em casa");
-            System.out.println("Amanhece");
-            decisaoEstrada();
-            escolha = entrada.next();
-        }while(!validaentrada(escolha));
-       if(escolha.equalsIgnoreCase("A")){
-           
-       }else{
-           
-       }
-    }
-    //1.2.1.2 
-    public static void correrEstrada(){
-        cena = 15;
-        System.out.println("Correr para a Estrada");
-        System.out.println("Acha um pau");
-        System.out.println("Luta");
-        lutar(inimigoUm, defendendoInimigoUm);
-        decisaoEstrada();
-    }
-    
-    /**
-     * 
-     */
     static void lutar(float[] inimigo, boolean inimigoDef){
          //Luta
         boolean lutando = true;
@@ -454,21 +218,317 @@ public class Run {
         }//Fim Luta
     }
     //15 Cenas
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //Capitulo 2
     /**
      * 
-     * @param args 
      */
+    static String mensagemDerrota(){
+        List palavras = new ArrayList();
+        palavras.add("Voce foi derrotado");
+        palavras.add("");
+        Collections.shuffle(palavras);
+        return ""+ palavras.get(0);
+    }
+    
+    /**
+     * Descricao do personagem e suas habilidades
+     */
+    static void personagem(){
+        System.out.println("Habilidades");
+        System.out.println("------------------------");
+        System.out.printf("| Vida: %14s%2s\n",getVida()," |");
+        System.out.printf("| Ataque: %10s%4s\n",getAtaque()," |");
+        System.out.printf("| Defesa: %10s%4s\n",getDefesa()," |");
+        System.out.printf("| Inteligência: %4s%4s\n",getInteligencia()," |");
+        System.out.println("------------------------");
+       
+    }
+     
+    static void barraDeEstatos(float[] inimigo){
+        esperarTempo(2);
+        System.out.println("\n\n\n\n\n\n\n\n\n");
+        System.out.println("---------------------------------");
+        System.out.printf("| %21s%2s%5s%2s\n","jogador","|","Inimigo","|");
+        System.out.printf("| Vida: %14s%3s%6s%3s\n",getVida(),"|", inimigo[0],
+                " |");
+        System.out.printf("| Ataque: %10s%5s%5s%4s\n",getAtaque(),"|",
+                inimigo[1]," |");
+        System.out.printf("| Defesa: %10s%5s%5s%4s\n",getDefesa(),"|",
+                inimigo[2]," |");
+        System.out.printf("| Inteligência: %4s%5s%5s%4s\n",getInteligencia(),
+                "|",inimigo[3]," |");
+        System.out.println("---------------------------------");
+    }
+    /**
+     * 
+     */
+    public static void armar(){
+        System.out.printf("| %21s%5s\n","Nome da Arma","|");
+        System.out.println("------------------------");
+        System.out.printf("| Vida: %14s%2s\n",getVida()," |");
+        System.out.printf("| Ataque: %10s%4s\n",getAtaque()," |");
+        System.out.printf("| Defesa: %10s%4s\n",getDefesa()," |");
+        System.out.printf("| Inteligência: %4s%4s\n",getInteligencia()," |");
+        System.out.println("------------------------");
+    }
+    /**
+     * 
+     */
+    //Capitulo 1
+    public static void inicioHistoria(){
+        System.out.println("A história começa...");
+        personagem();
+        armar();
+        inicioCapituloUm();
+        inicioCapituloDois();
+        inicioCapituloTres();
+    }
+    
+
+    //         INICIO!!!!!!!!!!!!
+    
+    //Ato 1 - The Fall (A Queda)
+    public static void inicioCapituloUm(){
+        cena = 1;
+        String escolha;
+        do{ 
+            System.out.println("Caminho Inicio");
+            System.out.println("Qual caminho deseja seguir? ");
+            System.out.println("A) Investigar a casa");
+            System.out.println("B) Ir para a estrada");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+           investigarCasa();
+       }else{
+           irParaEstrada();
+       }
+    }
+    
+    // 1.
+    public static void investigarCasa(){
+        cena = 2;
+        String escolha;
+        do{ 
+            System.out.println("Caminho investigarCasa");
+            System.out.println("Você deseja pegar o machado? ");
+            System.out.println("A) Sim");
+            System.out.println("B) Não");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+           pegaMachado();
+       }else{
+           naoMachado();
+       }
+    }
+    
+    // to doido pra deletar essa bosta;
+    public static void dentroCasa(){
+        cena = 3;
+        System.out.println("");
+    }
+    
+    // 1 - 1.
+    public static void pegaMachado(){
+        System.out.println("Voce pega o machado e ganha atributos de ataque");
+        decisaoEstrada();
+    }
+    
+    // 1 - 2.
+    public static void naoMachado(){
+        System.out.println("Voce nao pega o machado e nao recebe atributos de ataque.");
+        decisaoEstrada();
+    }
+    
+    // 2.
+    public static void irParaEstrada(){
+        cena = 12;
+        String escolha;
+        do{ 
+            System.out.println("Caminho decisao casa ou estrada");
+            System.out.println("Qual caminho deseja seguir? ");
+            System.out.println("A) Correr para a Casa");
+            System.out.println("B) Correr para a Estrada");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+           correrParaCasa();
+       }else{
+           correrPelaEstrada();
+       }
+    }
+    
+    // 2 - 1.
+    public static void correrParaCasa(){
+        cena = 13;
+        System.out.println("Correr para a Casa");
+        System.out.println("Acha e pega um machado");
+        System.out.println("Luta");
+        lutar(inimigoUm, defendendoInimigoUm);
+        decisaoEstrada();
+    }
+    
+    // 2 - 2.
+    public static void correrPelaEstrada(){
+        cena = 15;
+        System.out.println("Correr para a Estrada");
+        System.out.println("Acha um graveto");
+        System.out.println("Luta");
+        lutar(inimigoUm, defendendoInimigoUm);
+        decisaoEstrada();
+    }
+    
+    // 3
+    public static void decisaoEstrada(){
+        cena = 4;
+        String escolha;
+        do{ 
+            System.out.println("Caminho Decisao Estrada");
+            System.out.println("Qual lado deseja ir? ");
+            System.out.println("A) Direita");
+            System.out.println("B) Esquerda");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+           direitoEstrada();
+       }else{
+           esquerdoEstrada();
+       }
+    }
+    
+    //CAMINHO DIREITO DA ESTRADA---------------------------
+    
+    // 3 - 1.
+    public static void direitoEstrada(){
+        cena = 5;
+        System.out.println("Direito estrada - Floresta");
+        String escolha;
+        do{ 
+            System.out.println("uma néveoa pela manha cobre a floresta ouve barulhos");
+            System.out.println("o que deseja fazer? ");
+            System.out.println("A) Investigar");
+            System.out.println("B) Seguir em frente");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+           investigarArbusto();
+       }else{
+           acharRio();
+           
+       }
+    }
+    
+    // 3 - 1 - 1.
+    public static void acharRio(){
+        cena = 6;
+        System.out.println("Achando o Rio");
+        String escolha;
+        do{ 
+            System.out.println("acha o rio");
+            System.out.println("o que deseja fazer? ");
+            System.out.println("A) Atravessar");
+            System.out.println("B) Seguir o caminho do rio por onde esta");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+           System.out.println("cai e ele segue  a corrente do rio");
+           chegarCidade();
+       }else{
+           System.out.println("acha um barco de alguem");
+           chegarCidade();
+       }
+    }
+    
+    // 3 - 1 - 2.
+    public static void investigarArbusto(){
+        cena = 8;
+        System.out.println("Investigando o arbusto");
+        System.out.println("Luta");
+        lutar(inimigoDois, defendendoInimigoDois);
+        System.out.println("Ganhando vai para o rio");
+        acharRio();
+    }
+    
+    //-------------------------------------------------------
+    
+    
+    //CAMINHO ESQUERDO DA ESTRADA --------------------------------------------;
+    // 3 - 2.
+    public static void esquerdoEstrada(){
+        cena = 9;
+        System.out.println("Esquerdo estrada - Montanha");
+        
+        String escolha;
+        do{ 
+            System.out.println("em direcao à montanha encontra um  \n" +
+                                "vilarejo onde escuta um barulho m uma casa");
+            System.out.println("para qual casa deseja ir? ");
+            System.out.println("A) Com Barulho");
+            System.out.println("B) Sem Barulho");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+          casaBarulho();
+       }else{
+           casaSemBarulho();
+       }
+    }
+    
+    // 3 - 2 - 1.
+    public static void casaBarulho(){
+        cena = 10;
+        System.out.println("Casa com barulho");
+        System.out.println("Dentro da casa acha suprimentos e \n"
+                + "decide ir na outra casa");
+        casaSemBarulho();
+    }
+    
+    // 3 - 2 - 2.
+    public static void casaSemBarulho(){
+        cena = 11;
+        System.out.println("Casa Sem Barulho");
+        esperarTempo(3);
+        System.out.println("Acha  um corpo e é atacado pelo povo da montanha");
+        esperarTempo(2);
+        System.out.println("escapa  e encontra um homem numa carruagem");
+        esperarTempo(3);
+        System.out.println("atacados por um bicho e corre para a cidade");
+        chegarCidade();
+    }
+    
+    //----------------------------------------------------
+    
+    //Apagar depois hm(?);
+    public static void esperarCasa(){
+        cena = 14;
+//        String escolha;
+//        do{ 
+//            System.out.println("Espera em casa");
+//            System.out.println("Amanhece");
+//            decisaoEstrada();
+//            escolha = entrada.next();
+//        }while(!validaentrada(escolha));
+//       if(escolha.equalsIgnoreCase("A")){
+//           
+//       }else{
+//           
+//       }
+    }
+    
+    // 4.
+    public static void chegarCidade(){
+        cena = 7;
+        System.out.println("Chegando na cidade");
+    }
+    //-------------------------------------------
+    
+    
+
+    
+    
+    //ATO  2 - The Vision (A Visao)
+    
+    //4.
     public static void inicioCapituloDois(){
         esperarTempo(1.5f);
         System.out.println("\n\n\n\n\n\n\n");
@@ -487,22 +547,17 @@ public class Run {
            buscarAjuda();
        }
     }
-    /**
-     * 
-     * @param args 
-     */
+  
+    // 4 - 1. 
     public static void investigarCorpo(){
         System.out.println("Escuta barulhos na casa e vai lá");
         System.out.println("quando chega proximo ve alguem fugindo pela\n"
                 + " estrada e logo em seguida sendo morto");
         System.out.println("");
-        levarPrisioneiros();
+        levarClarao();
     }
     
-    /**
-     * 
-     * @param args 
-     */
+    // 4 - 2.
     public static void buscarAjuda(){
         System.out.println("Encontra pessoas");
         System.out.println("resumo de uma luta e ele é pego e amarrado\n"
@@ -522,25 +577,21 @@ public class Run {
           esconderCasa();
        }
     }
-    /**
-     * 
-     */
+    
+    // 4 - 2 - 1.
     public static void ajudarPersonagem(){
         System.out.println("todos vão juntos");
-        levarPrisioneiros();
+        levarClarao();
     }
     
-    /**
-     * 
-     */
+    // 4 - 2 - 2.
     public static void esconderCasa(){
         System.out.println("Personagens da casa se escondem");
-        levarPrisioneiros();
+        levarClarao();
     }
-    /**
-     * 
-     */
-    public static void levarPrisioneiros(){
+
+    // 5.
+    public static void levarClarao(){
         System.out.println("Leva um clarão e é levado");
         System.out.println("Visão do personagem 2 do laboratorio");
         System.out.println("conta um pouco da historia do laboratorio\n"
@@ -564,24 +615,21 @@ public class Run {
           esquerdaLaboratorio();
        }
     }
-    /**
-     * 
-     */
+ 
+    // 5 - 2.
     public static void direitaLaboratorio(){
         System.out.println("Luta com uns guardas");
         System.out.println("Criar esses personagns para a luta e colocar a luta");
         sairLaboratorio();
     }
-    /**
-     * 
-     */
+
+    // 5 - 1.
     public static void esquerdaLaboratorio(){
         System.out.println("urso quebra a parede e pega os guardas sem luta");
         sairLaboratorio();
     }
-    /**
-     * 
-     */
+
+    // 6.
     public static void sairLaboratorio(){
         System.out.println("passa por uma sala e acha um mapa holografico com\n"
                 + " a nave e contexto++");
@@ -589,25 +637,174 @@ public class Run {
         System.out.println("ve o portao aberto começando a se fechar olha pro\n"
                 + " lado ve que pegaram o lobo e corre ");
         System.out.println("");
-        portao();
     }
-    /**
-     * 
-     */
-    public static void portao(){
+    //-----------------------------------------------------------------------------
+ 
+    
+    
+    
+    // Ato 3 - A Hope (Uma Esperança)
+    // 7.
+    public static void inicioCapituloTres(){
         System.out.println("ATO 3");
+        String escolha;
+        do{ 
+            System.out.println("Escolha um personagem para continuar ");
+            System.out.println("A) Thomas Thompson");
+            System.out.println("B) Anthony Burton ");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+          thomasThompson();
+       }else{
+          anthonyBurton();
+       }
+    }
+     // 7 - 1.
+    public static void thomasThompson(){
+        System.out.println("Anthony te leva com ele, os dois param num posto e conversam");
+        System.out.println("Sao atacados por dois inimgos enviados por E.T.zinho");
+        lutar(inimigoTres, defendendoInimigoTres);
+        pantano();
     }
     
-    public static void instrucao(){
-        System.out.println("intrucao do jogo:");
-        
-        System.out.println("Digite 'Sair/Exit' para sair do jogo");
-        System.out.println("Digite 'Carregar' para carregar ultimo save");
-        System.out.println("Digite 'Save' para salvar o jogo");
-        
-        System.out.println("Enter Para voltar ao menu");
-        entrada.next();
+    // 7 - 1 - 2.
+    public static void pantano(){
+        String escolha;
+        System.out.println("Caminham pelo pântano ");
+        do{ 
+            System.out.println("Vão pelo pantano e acham uma cabana com ruidos estranhos");
+            System.out.println("O que vai fazer? ");
+            System.out.println("A) Ir até a cabana");
+            System.out.println("B) Seguir em frente");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+          entrarCabana();
+       }else{
+          naoCabana();
+       }
     }
+    
+    // 7 - 1 - 2 - 1.
+    public static void entrarCabana(){
+         String escolha;
+        do{ 
+            System.out.println("Entram e nao encontram nada alem de aves... e uma katana");
+            System.out.println("Deseja pegar a katana?");
+            System.out.println("A) Sim");
+            System.out.println("B) Não");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+          achamMonstro();
+       }else{
+          achamMonstro();
+       }
+    }
+    
+    // 7 - 1 - 2 - 2.
+    public static void naoCabana(){
+            System.out.println("Seguem em frente e conversam, mas são atacados por mosntros");
+            lutar(inimigoQuatro, defendendoInimigoQuatro);
+            achamMonstro();
+    }
+    
+    // 8.
+    public static void achamMonstro(){
+        System.out.println("Fogem");
+        
+    }
+    
+    // 8 - 2.
+    public static void achamBoss(){
+        System.out.println("Avistam a plantação e correm ate la");
+        System.out.println("Mas aparece o etz e vc batalha com ele e o Anthony concerta a nave");
+        lutar(boss, defendendo_boss);
+        decisaoFinalT();
+    }
+    
+    // 8 - 2 - 2.
+    public static void decisaoFinalT(){
+        String escolha;
+        do{ 
+            System.out.println("voce sai vitorioso mas precebe que a nave so cabe um");
+            System.out.println("O que deseja fazer?");
+            System.out.println("A) Ficar");
+            System.out.println("B) Ir a nave");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+          finalFicarT();
+       }else{
+          finalIrT();
+       }
+    }
+    
+    // 8 - 2 - 2 - 1.
+    public static void finalFicarT(){
+        System.out.println("Voce fica e enfrenta o etz para dar tempo do seu amigo fugir");
+        System.out.println("Fim....");
+    }
+    
+    // 8 - 2 - 2 - 2.
+    public static void finalIrT(){
+        System.out.println("Voce vai na nave enquanto seu amigo fica para dar tempo de voce fugir");
+        System.out.println("Voce ve seu amigo indo em direcao ao etz");
+        System.out.println("fim...");
+    }
+    
+    
+    
+    
+    
+    // 7 - 2.
+    public static void anthonyBurton(){
+        System.out.println("Ambos se encontram você o leva ");
+        System.out.println("Param num posto de gasolina abandonado e conversam.");
+        System.out.println("Decidem ir buscar a nave no celeiro, mas de repente\n"
+                + " são atacados por dois inimigos enviado pelo E.Tzinho.");
+        lutar(inimigoSeis, defendendoInimigoSeis);
+        System.out.println("Decidem seguir um atalho (pântano) para chegar \n"
+                + "no celeiro, onde está a nave.");
+        pantano2();
+    }
+    public static void pantano2(){
+        String escolha;
+        System.out.println("Caminham pelo pântano ");
+        do{ 
+            System.out.println("Vão pelo pantano e acham uma cabana com ruidos estranhos");
+            System.out.println("O que vai fazer? ");
+            System.out.println("A) Ir até a cabana");
+            System.out.println("B) Seguir em frente");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+          
+       }else{
+          
+       }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public static void creditos(){
         System.out.println("Infinity Odissey foi desenvovido por:\n\n");
@@ -736,20 +933,28 @@ public class Run {
                 irParaEstrada();
                 break;
             case 13:
-                correrCasa();
+                correrParaCasa();
                 break;
             case 14:
                 esperarCasa();
                 break;
             case 15:
-                correrEstrada();
+                correrPelaEstrada();
                 break;
         }
     }
-    /**
-     * 
-     * @param args 
-     */
+    
+    public static void instrucao(){
+        System.out.println("intrucao do jogo:");
+        
+        System.out.println("Digite 'Sair/Exit' para sair do jogo");
+        System.out.println("Digite 'Carregar' para carregar ultimo save");
+        System.out.println("Digite 'Save' para salvar o jogo");
+        
+        System.out.println("Enter Para voltar ao menu");
+        entrada.next();
+    }
+    
     public static void main(String[] args) {
         //teste
         System.out.print("Carregando: ");
@@ -818,12 +1023,10 @@ public class Run {
                     System.exit(0);
                     break;
             }
-        }
-       
+        }       
         inicioHistoria();
         //correrCasa();
-        System.out.println("");
-       
+        System.out.println("");       
     }
     
 }

@@ -296,6 +296,7 @@ public class Run {
         inicioCapituloUm();
         inicioCapituloDois();
         inicioCapituloTres();
+        
     }
     
 
@@ -672,6 +673,9 @@ public class Run {
     
     
     
+    
+    
+    
     // Ato 3 - A Hope (Uma Esperança)
     // 7.
     public static void inicioCapituloTres(){
@@ -690,7 +694,12 @@ public class Run {
           anthonyBurton();
        }
     }
-     // 7 - 1.
+    
+    
+    
+    
+    //Caminho final Thomas
+    // 7 - 1.
     public static void thomasThompson(){
         cena = 24;
         System.out.println("Anthony te leva com ele, os dois param num posto e conversam");
@@ -796,9 +805,10 @@ public class Run {
     
     
     
-    
-    // 7 - 2.
+    //Caminho Final Anthony
+    // 7 - 2
     public static void anthonyBurton(){
+        cena = 33;
         System.out.println("Ambos se encontram você o leva ");
         System.out.println("Param num posto de gasolina abandonado e conversam.");
         System.out.println("Decidem ir buscar a nave no celeiro, mas de repente\n"
@@ -808,7 +818,9 @@ public class Run {
                 + "no celeiro, onde está a nave.");
         pantano2();
     }
+    // 7 - 2 
     public static void pantano2(){
+        cena = 34;
         String escolha;
         System.out.println("Caminham pelo pântano ");
         do{ 
@@ -819,12 +831,91 @@ public class Run {
             escolha = entrada.next();
         }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
-          
+          entrarCabana2();
        }else{
-          
+          naoCabana2();
        }
     }
+    // 7 - 1 - 2 - 1.
+    public static void entrarCabana2(){
+        cena = 35;
+         String escolha;
+        do{ 
+            System.out.println("Entram e nao encontram nada alem de aves... e uma katana");
+            System.out.println("E também acham armas, pé de cabra katana e saem da cabana");
+            System.out.println("Deseja pegar a katana?");
+            System.out.println("A) Sim");
+            System.out.println("B) Não");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+            achamMonstro2();
+       }else{
+            achamMonstro2();
+       }
+    }
+
+   // 7 - 1 - 2 - 2.
+    public static void naoCabana2(){
+        cena = 36;
+            System.out.println("Seguem em frente e conversam, mas são atacados por mosntros");
+            lutar(inimigoQuatro, defendendoInimigoQuatro);
+            System.out.println("Conversam");
+            achamMonstro2();
+    }
+    // 8.
+    public static void achamMonstro2(){
+        cena = 37;
+        System.out.println("Fogem");
+        achamBoss2();
+    }
     
+    // 8 - 2.
+    public static void achamBoss2(){
+        cena = 38;
+        System.out.println("Escaparam do mosntro");
+        System.out.println("Finalmente chegam na plantação de trigo  e avistam o celeiro. ");
+        System.out.println("");
+        System.out.println("Avistam a plantação e correm ate la");
+        System.out.println("você conserta a nave e Thomas luta com ele");
+        lutar(boss, defendendo_boss);
+        decisaoFinalA();
+    }
+     // 8 - 2 - 2.
+    public static void decisaoFinalA(){
+        cena = 39;
+        String escolha;
+        do{ 
+            System.out.println("Você arruma a nave e percebe que não há combustível e potência para dois tripulantes. ");
+            System.out.println("O que deseja fazer?");
+            System.out.println("A) Ficar");
+            System.out.println("B) Ir a nave");
+            escolha = entrada.next();
+        }while(!validaentrada(escolha));
+       if(escolha.equalsIgnoreCase("A")){
+          finalFicarA();
+       }else{
+          finalIrA();
+       }
+    }
+    // 8 - 2 - 2 - 1.
+    public static void finalFicarA(){
+        cena = 40;
+        System.out.println("Você vê a nave partindo e fica cara a cara com o vilão...");
+        System.out.println("Fim....");
+    }
+    
+    // 8 - 2 - 2 - 2.
+    public static void finalIrA(){
+        cena = 41;
+        System.out.println("Você escapa com a nave que segue o trajeto para casa...");
+        System.out.println("fim...");
+    }
+    public static void FinalFicarDois(){
+        cena = 42;
+        System.out.println("Ambos deixam a nave e vão ir de frente para o vilão...");
+        System.out.println("Fim...");
+    }
     
     
     
@@ -1032,34 +1123,34 @@ public class Run {
                 finalIrT();
                 break;
             case 33:
-                
+                anthonyBurton();
                 break;
             case 34:
-                
+                pantano2();
                 break;
             case 35:
-                
+                entrarCabana2();
                 break;
             case 36:
-                
+                naoCabana2();
                 break;
             case 37:
-                
+                achamMonstro2();
                 break;
             case 38:
-                
+                achamBoss2();
                 break;
             case 39:
-                
+                decisaoFinalA();
                 break;
             case 40:
-                
+                finalFicarA();
                 break;
             case 41:
-                
+                finalIrA();
                 break;
             case 42:
-                
+                FinalFicarDois();
                 break;
         }
     }
@@ -1105,6 +1196,7 @@ public class Run {
         // Menu Inicial
 //        System.out.println("Entre qualquer valor para continuar");
 //        entrada.next();
+
         esperar(10, true);
         
         boolean flag = true;
@@ -1149,7 +1241,15 @@ public class Run {
         }       
         inicioHistoria();
         //correrCasa();
-        System.out.println("");       
+        System.out.println("");      
+        System.out.println("   _____             _   _                               \n" +
+"  / ____|           | | (_)                              \n" +
+" | |      ___  _ __ | |_ _ _ __  _   _  __ _             \n" +
+" | |     / _ \\| '_ \\| __| | '_ \\| | | |/ _` |            \n" +
+" | |____| (_) | | | | |_| | | | | |_| | (_| |  _   _   _ \n" +
+"  \\_____|\\___/|_| |_|\\__|_|_| |_|\\__,_|\\__,_| (_) (_) (_)\n" +
+"                                                         ");
+        System.out.println("");
     }
     
 }

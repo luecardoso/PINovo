@@ -19,10 +19,11 @@ import javax.swing.JOptionPane;
  * @author lucas.creis2
  */
 public class Run {
+    //[0] = vida, [1] = Ataque, [2] = Defesa, [3] = inteligencia, [4] = MaxVida
     //jogador vetor com suas habilidades
     static float[] jogador = {100f,3f,3f,5f, 100f};
     static boolean defendendoJogador = false;
-    static float[] armaEquipda;
+    static float[] armaEquipada;
     
     //Inimigo UM !
     static float[] inimigoUm = {100f,3f,3f,2f, 100f};
@@ -57,36 +58,37 @@ public class Run {
     static boolean defendendo_boss = false;
     
     //Armas
-    static float[] machado = {};
+    static float[] machado = {5,4,2,1,5};
     static float[] facao = {};
     
     static Scanner entrada = new Scanner(System.in);
+    
     //Salva a ultima cena
     static int cena = 0;
-    //[0] = vida, [1] = Ataque, [2] = Defesa, [3] = inteligencia, [4] = MaxVida
+    
     // retorna a vida do jogador
     public static float getVida(){
-        return jogador[0];
+        return statusGeralPlayer()[0];
     }
     
     // retorna o ataque do jogador
     public static float getAtaque(){
-        return jogador[1];
+        return statusGeralPlayer()[1];
     }
     
     // retorna a defesa do jogador
     public static float getDefesa(){
-        return jogador[2];
+        return statusGeralPlayer()[2];
     }
     
     // retorna a inteligencia do jogador
     public static float getInteligencia(){
-        return jogador[3];
+        return statusGeralPlayer()[3];
     }
     
     // retorna a vida MAXIMA do jogador
     public static float getMaxVida(){
-        return jogador[4];
+        return statusGeralPlayer()[4];
     }
     
     //incrementar 
@@ -113,10 +115,10 @@ public class Run {
     }
     
     public static float[] statusGeralPlayer(){
-        if(armaEquipda != null){
+        if(armaEquipada != null){
             float[] aux = new float[jogador.length];
             for (int i = 0; i < jogador.length; i++) {
-                aux[i] =  jogador[i] + armaEquipda[i];
+                aux[i] =  jogador[i] + armaEquipada[i];
             }
             return aux;
         }
@@ -154,10 +156,6 @@ public class Run {
         }
     }
     
-    /**
-     * 
-     * @param inimigo 
-     */
     public static void esperarTempo(float valor){
         int aux =(int) (valor * 1000);
         try {
@@ -177,7 +175,7 @@ public class Run {
         inimigo[0] = 100;
         Random r = new Random();
         while(lutando){
-            barraDeEstatos(inimigo);
+            barraDeStatus(inimigo);
             int leitor;
             if(turno){
                 do{
@@ -196,7 +194,7 @@ public class Run {
                 turno =! turno;
             }else{
                 System.out.println("Vez do Adiversario");
-                esperarTempo(2);
+                esperarTempo(1);
                 int resultado = r.nextInt(100);
                 if(resultado < 24){
                     leitor = 2;
@@ -218,26 +216,21 @@ public class Run {
             inimigoDef = false;
             if(getVida() <= 0){
                 lutando = false;
-                System.out.println("Voce è um Perdedor, Comece de novo");
+                System.out.println(mensagemDerrota());
             }else if(inimigo[0] <= 0){
                 lutando= false;
-                System.out.println("Voce lutou bravamente e venceu e seu orulho"
-                        + " fez com que sua vida regenerace 50 pontos, "
-                        + "alem de ficar mais forte");
+                System.out.println(mensagemVitoria());
                 setVida(50);
                 setAtaque(1);
                 setDefesa(1);
                 setInteligencia(1);
                 personagem();
-                direitoEstrada();
+                
             }
             esperarTempo(2);
         }//Fim Luta
     }
-    //15 Cenas
-    /**
-     * 
-     */
+
     static String mensagemDerrota(){
         List palavras = new ArrayList();
         palavras.add("Voce foi derrotado");
@@ -246,9 +239,15 @@ public class Run {
         return ""+ palavras.get(0);
     }
     
-    /**
-     * Descricao do personagem e suas habilidades
-     */
+    static String mensagemVitoria(){
+        List palavras = new ArrayList();
+        palavras.add("Essa foi por pouco");
+        palavras.add("");
+        Collections.shuffle(palavras);
+        return ""+ palavras.get(0);
+    }
+
+    //Descricao do personagem e suas habilidades
     static void personagem(){
         System.out.println("Habilidades");
         System.out.println("------------------------");
@@ -260,41 +259,40 @@ public class Run {
        
     }
      
-    static void barraDeEstatos(float[] inimigo){
-        esperarTempo(2);
+    static void barraDeStatus(float[] inimigo){
+        esperarTempo(1);
         System.out.println("\n\n\n\n\n\n\n\n\n");
-        System.out.println("---------------------------------");
-        System.out.printf("| %21s%2s%5s%2s\n","jogador","|","Inimigo","|");
-        System.out.printf("| Vida: %14s%3s%6s%3s\n",getVida(),"|", inimigo[0],
+        System.out.println("-----------------------------------");
+        System.out.printf("| %22s%2s%5s%2s\n","jogador","|","Inimigo","|");
+        System.out.println("-----------------------------------");
+        System.out.printf("| Vida: %16s%2s%6s%3s\n",statusGeralPlayer()[0],"|", inimigo[0],
                 " |");
-        System.out.printf("| Ataque: %10s%5s%5s%4s\n",getAtaque(),"|",
+        System.out.printf("| Ataque: %14s%2s%5s%4s\n",statusGeralPlayer()[1],"|",
                 inimigo[1]," |");
-        System.out.printf("| Defesa: %10s%5s%5s%4s\n",getDefesa(),"|",
+        System.out.printf("| Defesa: %14s%2s%5s%4s\n",statusGeralPlayer()[2],"|",
                 inimigo[2]," |");
-        System.out.printf("| Inteligência: %4s%5s%5s%4s\n",getInteligencia(),
+        System.out.printf("| Inteligência: %8s%2s%5s%4s\n",statusGeralPlayer()[3],
                 "|",inimigo[3]," |");
-        System.out.println("---------------------------------");
+        System.out.println("-----------------------------------");
     }
-    /**
-     * 
-     */
-    public static void armar(){
-        System.out.printf("| %21s%5s\n","Nome da Arma","|");
-        System.out.println("------------------------");
-        System.out.printf("| Vida: %14s%2s\n",getVida()," |");
-        System.out.printf("| Ataque: %10s%4s\n",getAtaque()," |");
-        System.out.printf("| Defesa: %10s%4s\n",getDefesa()," |");
-        System.out.printf("| Inteligência: %4s%4s\n",getInteligencia()," |");
-        System.out.println("------------------------");
+
+    public static void armar(float[] armas, String nomeArma){
+        
+        System.out.println("\n--------------------------");
+        System.out.printf("| %18s%6s\n",nomeArma,"|");
+        System.out.println("--------------------------");
+        System.out.printf("| Vida: %14s%4s\n",armas[0]," |");
+        System.out.printf("| Ataque: %12s%4s\n",armas[1]," |");
+        System.out.printf("| Defesa: %12s%4s\n",armas[2]," |");
+        System.out.printf("| Inteligência: %6s%4s\n",armas[3]," |");
+        System.out.println("--------------------------");
     }
-    /**
-     * 
-     */
+
     //Capitulo 1
     public static void inicioHistoria(){
         System.out.println("A história começa...");
         personagem();
-        armar();
+        //armar();
         inicioCapituloUm();
         inicioCapituloDois();
         inicioCapituloTres();
@@ -328,26 +326,31 @@ public class Run {
         do{ 
             System.out.println("Caminho investigarCasa");
             System.out.println("Você deseja pegar o machado? ");
+            armar(machado, "Machado");
             System.out.println("A) Sim");
             System.out.println("B) Não");
             escolha = entrada.next();
         }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
+           armaEquipada = machado;
            pegaMachado();
        }else{
            naoMachado();
        }
     }
     
-    // to doido pra deletar essa bosta;
-    public static void dentroCasa(){
-        cena = 3;
-        System.out.println("");
-    }
+//    // to doido pra deletar essa bosta;
+//    public static void dentroCasa(){
+//        cena = 3;
+//        System.out.println("");
+//    }
     
     // 1 - 1.
     public static void pegaMachado(){
         System.out.println("Voce pega o machado e ganha atributos de ataque");
+        
+        personagem();
+        //barraDeStatus(inimigoUm);
         decisaoEstrada();
     }
     
@@ -359,7 +362,7 @@ public class Run {
     
     // 2.
     public static void irParaEstrada(){
-        cena = 12;
+        cena = 3;
         String escolha;
         do{ 
             System.out.println("Caminho decisao casa ou estrada");
@@ -377,7 +380,7 @@ public class Run {
     
     // 2 - 1.
     public static void correrParaCasa(){
-        cena = 13;
+        cena = 4;
         System.out.println("Correr para a Casa");
         System.out.println("Acha e pega um machado");
         System.out.println("Luta");
@@ -387,7 +390,7 @@ public class Run {
     
     // 2 - 2.
     public static void correrPelaEstrada(){
-        cena = 15;
+        cena = 5;
         System.out.println("Correr para a Estrada");
         System.out.println("Acha um graveto");
         System.out.println("Luta");
@@ -397,7 +400,7 @@ public class Run {
     
     // 3
     public static void decisaoEstrada(){
-        cena = 4;
+        cena = 6;
         String escolha;
         do{ 
             System.out.println("Caminho Decisao Estrada");
@@ -417,7 +420,7 @@ public class Run {
     
     // 3 - 1.
     public static void direitoEstrada(){
-        cena = 5;
+        cena = 7;
         System.out.println("Direito estrada - Floresta");
         String escolha;
         do{ 
@@ -437,7 +440,7 @@ public class Run {
     
     // 3 - 1 - 1.
     public static void acharRio(){
-        cena = 6;
+        cena = 8;
         System.out.println("Achando o Rio");
         String escolha;
         do{ 
@@ -458,7 +461,7 @@ public class Run {
     
     // 3 - 1 - 2.
     public static void investigarArbusto(){
-        cena = 8;
+        cena = 9;
         System.out.println("Investigando o arbusto");
         System.out.println("Luta");
         lutar(inimigoDois, defendendoInimigoDois);
@@ -472,7 +475,7 @@ public class Run {
     //CAMINHO ESQUERDO DA ESTRADA --------------------------------------------;
     // 3 - 2.
     public static void esquerdoEstrada(){
-        cena = 9;
+        cena = 10;
         System.out.println("Esquerdo estrada - Montanha");
         
         String escolha;
@@ -485,15 +488,15 @@ public class Run {
             escolha = entrada.next();
         }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
-          casaBarulho();
+            casaBarulho();
        }else{
-           casaSemBarulho();
+            casaSemBarulho();
        }
     }
     
     // 3 - 2 - 1.
     public static void casaBarulho(){
-        cena = 10;
+        cena = 11;
         System.out.println("Casa com barulho");
         System.out.println("Dentro da casa acha suprimentos e \n"
                 + "decide ir na outra casa");
@@ -502,7 +505,7 @@ public class Run {
     
     // 3 - 2 - 2.
     public static void casaSemBarulho(){
-        cena = 11;
+        cena = 12;
         System.out.println("Casa Sem Barulho");
         esperarTempo(3);
         System.out.println("Acha  um corpo e é atacado pelo povo da montanha");
@@ -515,26 +518,26 @@ public class Run {
     
     //----------------------------------------------------
     
-    //Apagar depois hm(?);
-    public static void esperarCasa(){
-        cena = 14;
-//        String escolha;
-//        do{ 
-//            System.out.println("Espera em casa");
-//            System.out.println("Amanhece");
-//            decisaoEstrada();
-//            escolha = entrada.next();
-//        }while(!validaentrada(escolha));
-//       if(escolha.equalsIgnoreCase("A")){
-//           
-//       }else{
-//           
-//       }
-    }
+//    //Apagar depois hm(?);
+//    public static void esperarCasa(){
+//        cena = 14;
+////        String escolha;
+////        do{ 
+////            System.out.println("Espera em casa");
+////            System.out.println("Amanhece");
+////            decisaoEstrada();
+////            escolha = entrada.next();
+////        }while(!validaentrada(escolha));
+////       if(escolha.equalsIgnoreCase("A")){
+////           
+////       }else{
+////           
+////       }
+//    }
     
     // 4.
     public static void chegarCidade(){
-        cena = 7;
+        cena = 13;
         System.out.println("Chegando na cidade");
     }
     //-------------------------------------------
@@ -547,6 +550,7 @@ public class Run {
     
     //4.
     public static void inicioCapituloDois(){
+        cena = 14;
         esperarTempo(1.5f);
         System.out.println("\n\n\n\n\n\n\n");
         String escolha;
@@ -567,6 +571,7 @@ public class Run {
   
     // 4 - 1. 
     public static void investigarCorpo(){
+        cena = 15;
         System.out.println("Escuta barulhos na casa e vai lá");
         System.out.println("quando chega proximo ve alguem fugindo pela\n"
                 + " estrada e logo em seguida sendo morto");
@@ -576,6 +581,7 @@ public class Run {
     
     // 4 - 2.
     public static void buscarAjuda(){
+        cena = 16;
         System.out.println("Encontra pessoas");
         System.out.println("resumo de uma luta e ele é pego e amarrado\n"
                 + " (dialogos)");
@@ -589,26 +595,29 @@ public class Run {
             escolha = entrada.next();
         }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
-           ajudarPersonagem();
+            ajudarPersonagem();
        }else{
-          esconderCasa();
+            esconderCasa();
        }
     }
     
     // 4 - 2 - 1.
     public static void ajudarPersonagem(){
+        cena = 17;
         System.out.println("todos vão juntos");
         levarClarao();
     }
     
     // 4 - 2 - 2.
     public static void esconderCasa(){
+        cena = 18;
         System.out.println("Personagens da casa se escondem");
         levarClarao();
     }
 
     // 5.
     public static void levarClarao(){
+        cena = 19;
         System.out.println("Leva um clarão e é levado");
         System.out.println("Visão do personagem 2 do laboratorio");
         System.out.println("conta um pouco da historia do laboratorio\n"
@@ -635,6 +644,7 @@ public class Run {
  
     // 5 - 2.
     public static void direitaLaboratorio(){
+        cena = 20;
         System.out.println("Luta com uns guardas");
         System.out.println("Criar esses personagns para a luta e colocar a luta");
         sairLaboratorio();
@@ -642,12 +652,14 @@ public class Run {
 
     // 5 - 1.
     public static void esquerdaLaboratorio(){
+        cena = 21;
         System.out.println("urso quebra a parede e pega os guardas sem luta");
         sairLaboratorio();
     }
 
     // 6.
     public static void sairLaboratorio(){
+        cena = 22;
         System.out.println("passa por uma sala e acha um mapa holografico com\n"
                 + " a nave e contexto++");
         System.out.println("familia -1, foge e vai para a saída da cidade");
@@ -663,6 +675,7 @@ public class Run {
     // Ato 3 - A Hope (Uma Esperança)
     // 7.
     public static void inicioCapituloTres(){
+        cena = 23;
         System.out.println("ATO 3");
         String escolha;
         do{ 
@@ -679,6 +692,7 @@ public class Run {
     }
      // 7 - 1.
     public static void thomasThompson(){
+        cena = 24;
         System.out.println("Anthony te leva com ele, os dois param num posto e conversam");
         System.out.println("Sao atacados por dois inimgos enviados por E.T.zinho");
         lutar(inimigoTres, defendendoInimigoTres);
@@ -687,6 +701,7 @@ public class Run {
     
     // 7 - 1 - 2.
     public static void pantano(){
+        cena = 25;
         String escolha;
         System.out.println("Caminham pelo pântano ");
         do{ 
@@ -705,6 +720,7 @@ public class Run {
     
     // 7 - 1 - 2 - 1.
     public static void entrarCabana(){
+        cena = 26;
          String escolha;
         do{ 
             System.out.println("Entram e nao encontram nada alem de aves... e uma katana");
@@ -722,6 +738,7 @@ public class Run {
     
     // 7 - 1 - 2 - 2.
     public static void naoCabana(){
+        cena = 27;
             System.out.println("Seguem em frente e conversam, mas são atacados por mosntros");
             lutar(inimigoQuatro, defendendoInimigoQuatro);
             achamMonstro();
@@ -729,12 +746,14 @@ public class Run {
     
     // 8.
     public static void achamMonstro(){
+        cena = 28;
         System.out.println("Fogem");
-        
+        achamBoss();
     }
     
     // 8 - 2.
     public static void achamBoss(){
+        cena = 29;
         System.out.println("Avistam a plantação e correm ate la");
         System.out.println("Mas aparece o etz e vc batalha com ele e o Anthony concerta a nave");
         lutar(boss, defendendo_boss);
@@ -743,6 +762,7 @@ public class Run {
     
     // 8 - 2 - 2.
     public static void decisaoFinalT(){
+        cena = 30;
         String escolha;
         do{ 
             System.out.println("voce sai vitorioso mas precebe que a nave so cabe um");
@@ -760,12 +780,14 @@ public class Run {
     
     // 8 - 2 - 2 - 1.
     public static void finalFicarT(){
+        cena = 31;
         System.out.println("Voce fica e enfrenta o etz para dar tempo do seu amigo fugir");
         System.out.println("Fim....");
     }
     
     // 8 - 2 - 2 - 2.
     public static void finalIrT(){
+        cena = 32;
         System.out.println("Voce vai na nave enquanto seu amigo fica para dar tempo de voce fugir");
         System.out.println("Voce ve seu amigo indo em direcao ao etz");
         System.out.println("fim...");
@@ -866,7 +888,7 @@ public class Run {
         }    
     }
     
-    public static void espacar(int linhas, boolean delay){
+    public static void esperar(int linhas, boolean delay){
         for (int i = 0; i < linhas; i++) {
             if(delay){
                 esperarTempo(0.2f);
@@ -920,43 +942,124 @@ public class Run {
                 investigarCasa();
                 break;
             case 3:
-                dentroCasa();
-                break;
-            case 4:
-                decisaoEstrada();
-                break;
-            case 5:
-                direitoEstrada();
-                break;
-            case 6:
-                acharRio();
-                break;
-            case 7:
-                chegarCidade();
-                break;
-            case 8:
-                investigarArbusto();
-                break;
-            case 9:
-                esquerdoEstrada();
-                break;
-            case 10:
-                casaBarulho();
-                break;
-            case 11:
-                casaSemBarulho();
-                break;
-            case 12:
                 irParaEstrada();
                 break;
-            case 13:
+            case 4:
                 correrParaCasa();
                 break;
+            case 5:
+                correrPelaEstrada();
+                break;
+            case 6:
+                decisaoEstrada();
+                break;
+            case 7:
+                direitoEstrada();
+                break;
+            case 8:
+                acharRio();
+                break;
+            case 9:
+                investigarArbusto();
+                break;
+            case 10:
+                esquerdoEstrada();
+                break;
+            case 11:
+                casaBarulho();
+                break;
+            case 12:
+                casaSemBarulho();
+                break;
+            case 13:
+                chegarCidade();
+                break;
             case 14:
-                esperarCasa();
+                inicioCapituloDois();
                 break;
             case 15:
-                correrPelaEstrada();
+                investigarCorpo();
+                break;
+            case 16:
+                buscarAjuda();
+                break;
+            case 17:
+                ajudarPersonagem();
+                break;
+            case 18:
+                esconderCasa();
+                break;
+            case 19:
+                levarClarao();
+                break;
+            case 20:
+                direitaLaboratorio();
+                break;
+            case 21:
+                esquerdaLaboratorio();
+                break;
+            case 22:
+                sairLaboratorio();
+                break;
+            case 23:
+                inicioCapituloTres();
+                break;
+            case 24:
+                thomasThompson();
+                break;
+            case 25:
+                pantano();
+                break;
+            case 26:
+                entrarCabana();
+                break;
+            case 27:
+                naoCabana();
+                break;
+            case 28:
+                achamMonstro();
+                break;
+            case 29:
+                achamBoss();
+                break;
+            case 30:
+                decisaoFinalT();
+                break;
+            case 31:
+                finalFicarT();
+                break;
+            case 32:
+                finalIrT();
+                break;
+            case 33:
+                
+                break;
+            case 34:
+                
+                break;
+            case 35:
+                
+                break;
+            case 36:
+                
+                break;
+            case 37:
+                
+                break;
+            case 38:
+                
+                break;
+            case 39:
+                
+                break;
+            case 40:
+                
+                break;
+            case 41:
+                
+                break;
+            case 42:
+                
                 break;
         }
     }
@@ -979,7 +1082,11 @@ public class Run {
             System.out.print("|");
             esperarTempo(0.3f);
         }
-        espacar(10, true);
+        //lutar(inimigoUm, defendendoInimigoUm);
+        //armar(machado,"Machado");
+        //statusGeralPlayer();
+        //barraDeStatus(inimigoUm);
+        esperar(5, true);
         // Imagem Inicial
         System.out.println(" "
                + " _____        __ _       _ _         \n" +
@@ -996,18 +1103,17 @@ public class Run {
             "                               __/ |  \n" +
             "                              |___/   ");
         // Menu Inicial
-        System.out.println("Entre qualquer valor para continuar");
-        entrada.next();
-        espacar(10, true);
+//        System.out.println("Entre qualquer valor para continuar");
+//        entrada.next();
+        esperar(10, true);
         
         boolean flag = true;
         while(flag){
-            System.out.println("|-------------------------------------------|");
-            System.out.println("|-------------------------------------------|");
+            System.out.println("|___________________________________________|");
             System.out.printf("|------------- %10s%20s\n", "","-------------|");
             System.out.printf("|------------- %10s%20s\n", "MENU","-------------|");
             System.out.printf("|------------- %10s%20s\n", "","-------------|");
-            System.out.println("--------------------------------------------|");
+            System.out.println("|___________________________________________|");
             System.out.printf("|------------- %10s%20s\n", "","-------------|");
             System.out.printf("|------------- %4s%6s%20s\n", "1 -", "Novo Jogo","-------------|");
             System.out.printf("|------------- %4s%6s%20s\n", "2 -", "Carregar Jogo","-------------|");
@@ -1020,7 +1126,7 @@ public class Run {
             int escolha = entrada.nextInt();
             switch(escolha){
                 case 1:
-                    espacar(10, false);
+                    esperar(10, false);
                     inicioHistoria();
                     break;
                 case 2:

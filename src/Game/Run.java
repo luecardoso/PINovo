@@ -22,6 +22,7 @@ public class Run {
     //jogador vetor com suas habilidades
     static float[] jogador = {100f,3f,3f,5f, 100f};
     static boolean defendendoJogador = false;
+    static float[] armaEquipda;
     
     //Inimigo UM !
     static float[] inimigoUm = {100f,3f,3f,2f, 100f};
@@ -54,6 +55,10 @@ public class Run {
     // BOOOSSSSSS !!!!!!!!!!
     static float []boss = {100f,3f,3f,2f,100f};
     static boolean defendendo_boss = false;
+    
+    //Armas
+    static float[] machado = {};
+    static float[] facao = {};
     
     static Scanner entrada = new Scanner(System.in);
     //Salva a ultima cena
@@ -107,6 +112,18 @@ public class Run {
         jogador[3] += valor;
     }
     
+    public static float[] statusGeralPlayer(){
+        if(armaEquipda != null){
+            float[] aux = new float[jogador.length];
+            for (int i = 0; i < jogador.length; i++) {
+                aux[i] =  jogador[i] + armaEquipda[i];
+            }
+            return aux;
+        }
+        else{
+            return jogador;
+        }
+    } 
     
     public static void ataque(float[] atacante, float[] atacado, boolean def){
         Random r = new Random();
@@ -169,7 +186,7 @@ public class Run {
                     if(leitor == 1){
                     //Ataca
                         System.out.println("Atacando");
-                        ataque(jogador, inimigo, inimigoDef );
+                        ataque(statusGeralPlayer(), inimigo, inimigoDef );
                     }else if(leitor == 2){
                     //Defende
                         System.out.println("Defendendo");
@@ -189,7 +206,7 @@ public class Run {
                 if(leitor == 1){
                 //Ataca
                     System.out.println("Adiversario Atacou");
-                    ataque(inimigo,jogador, inimigoDef);
+                    ataque(inimigo,statusGeralPlayer(), inimigoDef);
                 }else if(leitor == 2){
                 //Defende
                     System.out.println("Adiversario Defendeu");

@@ -622,6 +622,7 @@ public class Run {
     
     // 3 - 1 - 2.
     public static void investigarArbusto(){
+        esperarTempo(1);
         cena = 9;
         System.out.println("Você se aproxima dos arbustos, onde pareçe estar se \n"
                 + "mexendo cada vez mais. Atravessando-o você não avista nada \n"

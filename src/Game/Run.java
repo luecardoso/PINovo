@@ -305,10 +305,11 @@ public class Run {
 
     //Capitulo 1
     public static void inicioHistoria(){
+        
         System.out.println("Não existe nenhum caminho lógico para a descoberta \n"
                 + "das leis do Universo - o único caminho é o da intuição.");
         System.out.printf("%10s ", "- Albert Einstein");
-        esperarTempo(6.5f);
+//        esperarTempo(6.5f);
         System.out.println("");
         System.out.println("");
         personagem();
@@ -446,7 +447,7 @@ public class Run {
                 + "medo de que ele consiga, você procura um lugar para se esconder.\n"
                 + "Olhando ao redor dessa casa grande, não se encontra ninguém e \n"
                 + "só se depara com móveis empoeirados. Você ouve o barulho de um \n"
-                + "vidro se quebrar e correr para abrir qualquer porta a sua frente.\n"
+                + "vidro se quebrar e corre para abrir qualquer porta a sua frente.\n"
                 + "Tenta uma, nada. A segunda sem sucesso, você quebra a maçaneta.\n"
                 + "Finalmente na terceira você consegue abrir e dá de cara com o \n"
                 + "que seria um porão. Você acende as luzes e olha a sombra da \n"
@@ -483,8 +484,8 @@ public class Run {
                 armaEquipada = chaveGrifo;
                 nomeArma = "Chave Grifo";
        }
-        System.out.println("Você pegou "+nomeArma);    
-        System.out.println("Luta");
+        System.out.println("Você pegou "+nomeArma);
+        System.out.println("O animal quebra a porta e parte em sua direção.");
         lutar(inimigoUm, defendendoInimigoUm);
         decisaoEstrada();
     }
@@ -523,10 +524,19 @@ public class Run {
     // 3 - 1.
     public static void direitoEstrada(){
         cena = 7;
-        System.out.println("Direito estrada - Floresta");
+        System.out.println("Você caminha em direção a floresta. A cada passo\n"
+                    + " que dá uma nevóa se intensifica, dificultando sua visão\n"
+                    + "Aos poucos o ambiente fica tomado pela névoa, onde só o \n"
+                    + "que se vê são silhuetas do que estava aos eu redor. Você \n"
+                    + "continua caminhando. Até que em um momento você ouve um \n"
+                + "barulho vindo de algum lugar perto de você.");
+        System.out.printf("- shttyr -");
+        System.out.println("Com o tempo o som se intensifica e de canto de olho \n"
+                + "você observa um arbsuto se mexer.");
+
         String escolha;
         do{ 
-            System.out.println("uma néveoa pela manha cobre a floresta ouve barulhos");
+            System.out.println("");
             System.out.println("o que deseja fazer? ");
             System.out.println("A) Investigar");
             System.out.println("B) Seguir em frente");
@@ -535,6 +545,10 @@ public class Run {
        if(escolha.equalsIgnoreCase("A")){
            investigarArbusto();
        }else{
+            System.out.println("Seguindo em frente você percebe que está sem rumo\n"
+                   + "e perdido. As coisas ainda não fazem sentido. Até que você\n"
+                   + "ouve um som de água e resolve ir atrás. É um rio. ");
+
            acharRio();
            
        }
@@ -543,20 +557,39 @@ public class Run {
     // 3 - 1 - 1.
     public static void acharRio(){
         cena = 8;
-        System.out.println("Achando o Rio");
+        System.out.println("Após encontrar o rio você se agacha e bebe a \n"
+                    + "agúa.A corrente deste rio está forte O dia está acabando\n"
+                    + " e a névoa se esmaece dando espaço para a escuridão, que \n"
+                    + "lentamente cobre o mundo. Continuando a caminhar você avista\n"
+                    + " um pequeno barco no canto do rio. Ao se aproximar, percebe\n"
+                    + " que ele está sujo e com furos, aparentemente não confiável.\n"
+                    + " De repente você ouve um barulho alto vindo de trás. ");
+
         String escolha;
         do{ 
-            System.out.println("acha o rio");
             System.out.println("o que deseja fazer? ");
             System.out.println("A) Atravessar");
             System.out.println("B) Seguir o caminho do rio por onde esta");
             escolha = entrada.next();
         }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
-           System.out.println("cai e ele segue  a corrente do rio");
+           System.out.println("");
+           System.out.println("Então você opta por atravessar o rio. A corrente\n"
+                   + "forte dificulta sua passagem. Você chega quase na metade.\n"
+                   + "Até que a corrente lhe atinge brutalmente, assim te levando\n"
+                   + "corrente abaixo. Você consegue se segurar em umas rochar \n"
+                   + "por um momento, até que você ser acertado por um tronco velho\n"
+                   + "e logo em seguida desmaiando.");
            chegarCidade();
        }else{
-           System.out.println("acha um barco de alguem");
+           System.out.println("Você empurra o barco. O som se aproxima cada vez\n"
+                   + "mais. Então você entra no barco e segue o rio. Exausto você\n"
+                   + "acaba adormecendo. Quando acorda já está de manhã e o mundo\n"
+                   + "que viu antes parece ter desaparecido, o sol raiava e a \n"
+                   + "vista estava mais clara. Você desce do barco e percebe que\n"
+                   + "há algo de estranho atrás das árvores. Então você passa por\n"
+                   + "elas e olha uma doma enorme rodeado por um campo livre. E \n"
+                   + "percebe que existe algo dentro desta doma... é uma cidade.");
            chegarCidade();
        }
     }
@@ -564,11 +597,21 @@ public class Run {
     // 3 - 1 - 2.
     public static void investigarArbusto(){
         cena = 9;
-        System.out.println("Investigando o arbusto");
+        System.out.println("Você se aproxima dos arbustos, onde pareçe estar se \n"
+                + "mexendo cada vez mais. Atravessando-o você não avista nada \n"
+                + "além de árvores cobertas pela névoa. Quando de repente você \n"
+                + "é empurrado para longe por alguma coisa. Essa coisa se asse-\n"
+                + "melha à um javali, porém maior e mais robusto. Este animal \n"
+                + "não é normal há algo de errado com ele, mas antes que você \n"
+                + "possa analisar-lo primeiro, a coisa corre em sua direção,\n"
+                + "assim o atacando.");
+
         System.out.println("Luta");
         lutar(inimigoDois, defendendoInimigoDois);
-        System.out.println("Ganhando vai para o rio");
+        System.out.println("Após finalmente matá-lo, você recupera as forças e \n"
+                + "continua em frente. Pouco tempo depois você encontra um rio.");
         acharRio();
+
     }
     
     //-------------------------------------------------------
@@ -578,15 +621,24 @@ public class Run {
     // 3 - 2.
     public static void esquerdoEstrada(){
         cena = 10;
-        System.out.println("Esquerdo estrada - Montanha");
-        
+        System.out.println("Você começa a andar em direção a uma montanha.\n"
+                + "Ao se aproximar percebe que há um vilarejo por perto e \n"
+                + "segue até chegar nele. O vilarejo está rodeado de árvores\n"
+                + "e o clima de pôr do sol dá um ar de traquilidade.\n"
+                + "Você chega no vilarejo no inicio da noite."
+                + "Continua caminhando observando o local. Um lugar silencioso,\n"
+                + "a principio. Casas e trailer por perto. Você busca por ajuda\n"
+                + "mas ninguem responde. Bate em uma das casas. Nada. Você então\n"
+                + "decide entrar em uma delas. Inicialmente a casa está vazia,\n"
+                + "cheia de poeira e mesmo o local iluminado não se encontra \n"
+                + "nenhuma pessoa. Abandonado. Você houve um barulho em uma casa\n"
+                + "lá fora.");
         String escolha;
         do{ 
-            System.out.println("em direcao à montanha encontra um  \n" +
-                                "vilarejo onde escuta um barulho m uma casa");
-            System.out.println("para qual casa deseja ir? ");
-            System.out.println("A) Com Barulho");
-            System.out.println("B) Sem Barulho");
+            System.out.println("");
+            System.out.println("O que deseja fazer?");
+            System.out.println("A) Investigar o barulho");
+            System.out.println("B) Permanecer");
             escolha = entrada.next();
         }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
@@ -599,22 +651,59 @@ public class Run {
     // 3 - 2 - 1.
     public static void casaBarulho(){
         cena = 11;
-        System.out.println("Casa com barulho");
-        System.out.println("Dentro da casa acha suprimentos e \n"
-                + "decide ir na outra casa");
+        System.out.println("");
+        System.out.println("Toc,Toc!");
+        System.out.println("Nenhuma movimentação.");
+        System.out.println("Toc,Toc!");
+        System.out.println("Nada. Você decide forçar a entrada. No mesmo instante\n"
+                + "o som acaba. A casa se assemelha a outra sem nenhuma pessoa.\n"
+                + "Porta-retratos e os moveis organizados. Parece que alguém vivia\n"
+                + "aqui. Você dá uma olhada pela casa e não encontra nada de \n"
+                + "relevante que te faça lembrar do que está acontecendo. A luz\n"
+                + "da casa em que estava se apaga. E você volta para ver se en-\n"
+                + "contra alguém.");
+        
         casaSemBarulho();
     }
     
     // 3 - 2 - 2.
     public static void casaSemBarulho(){
         cena = 12;
-        System.out.println("Casa Sem Barulho");
-        esperarTempo(3);
-        System.out.println("Acha  um corpo e é atacado pelo povo da montanha");
+        System.out.println("Uma das janelas se quebra. Você encontra um corpo jo-\n"
+                + "gado no chão. Ótimo uma pessoa! Você se aporxima para ver\n"
+                + "se ela está bem. Logo menos você se depara com um grupo de pes-\n"
+                + "soas te atacando. Elas parecem irritadas com algo. Você é acer-\n"
+                + "tado na cabeça por um objeto, desmaiando.");
+        System.out.println("/////////////////////////////////////");
+        System.out.println("");
+        System.out.println("");
         esperarTempo(2);
-        System.out.println("escapa  e encontra um homem numa carruagem");
-        esperarTempo(3);
-        System.out.println("atacados por um bicho e corre para a cidade");
+        System.out.println("Após um tempo você acorda.");
+        esperarTempo(1);
+        System.out.println("Você: Quem são vocês???");
+        esperarTempo(2);
+        System.out.printf("%50s :Estranho", "...");
+        esperarTempo(1);
+        System.out.printf("\n%50s :Estranho"," Você é um deles?");
+        esperarTempo(2);
+        System.out.println("\nVocê: Um deles? De quem você está falando??");
+        esperarTempo(2);
+        System.out.printf("\n%50s","Estamos fugindo dEles. Eles são perigosos!");
+        esperarTempo(2);
+        System.out.println("\n\n Houve-se um barulho de carro se aproximando.\n"
+                + "Essa 'família' um tanto como apavorada vão investigar eles.\n"
+                + "Aproveitando a oportunidade você tenta se soltar. Houve uns\n"
+                + "tiros de espingarda e gritos de desespero. Um seguindo do \n"
+                + "outro os gritos encerram. Seu coração começa a acelerar na\n"
+                + "medida em que houve passos em sua direção. Você se solta e\n"
+                + "vê um homem parado na frente da porta");
+        esperarTempo(2);
+        System.out.printf("%50s", "Você está bem??");
+        esperarTempo(1);
+        System.out.printf("%50s", "Calma, não se preocupe.");
+        System.out.printf("%50s", "Eu não sou como Eles.");
+        esperarTempo(2);
+        System.out.println("...");
         chegarCidade();
     }
     
@@ -624,7 +713,13 @@ public class Run {
     // 4.
     public static void chegarCidade(){
         cena = 13;
-        System.out.println("Chegando na cidade");
+        System.out.println("Se aproximando da doma a cidade fica cada vez mais \n"
+                + "nítida. A cidade é incrivelmente grande. Você se aproxima ca-\n"
+                + "da vez mais até ficar cara a cara com a doma. Você estende sua\n"
+                + "mão para tocá-la quando de repente se ouve um barulho estron-\n"
+                + "doso, logo em seguida uma forte rajada de luz lhe atinge, a \n"
+                + "doma estava se abrindo até que...");
+
     }
     //-------------------------------------------
     
@@ -1282,6 +1377,7 @@ public class Run {
     }
     
     public static void main(String[] args) {
+        casaBarulho();
         //teste
 //        System.out.print("Carregando: ");
 //        for(int i = 0; i <10; i++){

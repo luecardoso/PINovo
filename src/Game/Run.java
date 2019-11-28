@@ -53,13 +53,25 @@ public class Run {
     static float []inimigoSete = {100f,3f,3f,2f,100f};
     static boolean defendendoInimigoSete = false;
     
+    //Inimigo OITO !
+    static float []inimigoOito = {100f,3f,3f,2f,100f};
+    static boolean defendendoInimigoOito = false;
+    
+    //Inimigo NOVE !
+    static float []inimigoNove = {100f,3f,3f,2f,100f};
+    static boolean defendendoInimigoNove = false;
+    
     // BOOOSSSSSS !!!!!!!!!!
     static float []boss = {100f,3f,3f,2f,100f};
     static boolean defendendo_boss = false;
     
     //Armas
-    static float[] machado = {5,4,2,1,5};
-    static float[] facao = {};
+    //[0] = vida, [1] = Ataque, [2] = Defesa, [3] = inteligencia, [4] = MaxVida
+    static float[] machado = {5,4,2,2,5};
+    static float[] facao = {3,3,2,4,3};
+    static float[] enxada = {4,4,7,6,4};
+    static float[] chaveGrifo = {7,6,1,2,7}; 
+    static String nomeArma;
     
     static Scanner entrada = new Scanner(System.in);
     
@@ -358,6 +370,7 @@ public class Run {
         }while(!validaentrada(escolha));
        if(escolha.equalsIgnoreCase("A")){
            armaEquipada = machado;
+           nomeArma = "Machado";
            pegaMachado();
        }else{
            naoMachado();
@@ -394,9 +407,26 @@ public class Run {
     public static void irParaEstrada(){
         cena = 3;
         String escolha;
+            System.out.println(") você segue pela estrada observa o cenário da-\n"
+                    + "quele lugar. Ainda meio confuso e com a visão um pouco \n"
+                    + "embaçada, enxerga ao longo do horizonte árvores que se \n"
+                    + "assemelham a uma floresta densa, e, ao colocar os olhos \n"
+                    + "de volta a estrada observa uma silhueta de um animal co-\n"
+                    + "mendo algo que não se sabe ao certo o que era. Ele parece\n"
+                    + " estar faminto e brutalmente devora o que está em sua \n"
+                    + "frente. Aos poucos você tenta se aproximar, mas ele ouve \n"
+                    + "os seus passos e começa a te encarar. Seu semblante de-\n"
+                    + "monstra gradualmente uma expressão de fúria. Vocês se en-\n"
+                    + "caram por um breve período. Você não entende o porquê \n"
+                    + "aquela reação e começa a se afastar.");
+            System.out.println("");
+            System.out.println("O animal começa a andar em sua direção. E cada \n"
+                    + "vez mais ele aumenta os passos. A criatura te observa tão\n"
+                    + "fixamente que voce tropeça e nessa hora ele parte pra cima\n"
+                    + "de voce e então você corre");
         do{ 
-            System.out.println("Caminho decisao casa ou estrada");
-            System.out.println("Qual caminho deseja seguir? ");
+            System.out.println("");
+            System.out.println("Qual caminho deseja correr? ");
             System.out.println("A) Correr para a Casa");
             System.out.println("B) Correr para a Estrada");
             escolha = entrada.next();
@@ -411,8 +441,49 @@ public class Run {
     // 2 - 1.
     public static void correrParaCasa(){
         cena = 4;
-        System.out.println("Correr para a Casa");
-        System.out.println("Acha e pega um machado");
+        System.out.println("desesperadamente você entra na casa e tranca. Logo \n"
+                + "menos ele está empurrando a porta tentando derrubá-la. Com \n"
+                + "medo de que ele consiga, você procura um lugar para se esconder.\n"
+                + "Olhando ao redor dessa casa grande, não se encontra ninguém e \n"
+                + "só se depara com móveis empoeirados. Você ouve o barulho de um \n"
+                + "vidro se quebrar e correr para abrir qualquer porta a sua frente.\n"
+                + "Tenta uma, nada. A segunda sem sucesso, você quebra a maçaneta.\n"
+                + "Finalmente na terceira você consegue abrir e dá de cara com o \n"
+                + "que seria um porão. Você acende as luzes e olha a sombra da \n"
+                + "criatura por baixo da porta. Então procura algo para tentar se\n"
+                + " defender. Você encontra uns porta-retratos antigos de uma \n"
+                + "família que parecia morar ali. Caixas e mais caixas por todo \n"
+                + "o canto. Você vasculha nelas e acha uma caixa com ferramentas\n"
+                + " antigas nas quais se encontram: um machado, uma enxada, uma\n"
+                + "Chave Grifo e um facão.");
+        String escolha;
+        do{ 
+            armar(enxada, "Enxada");
+            armar(facao, "Facão");
+            armar(machado, "Machado");
+            armar(chaveGrifo, "Chave Grifo");
+            System.out.println("Qual arma pegar");
+            System.out.println("A) Enxada");
+            System.out.println("B) Facao");
+            System.out.println("C) Machado");
+            System.out.println("D) Chave Grifo");
+            escolha = entrada.next();
+        }while(!escolha.equalsIgnoreCase("A") || !escolha.equalsIgnoreCase("B")
+               || !escolha.equalsIgnoreCase("C") || !escolha.equalsIgnoreCase("D"));
+       if(escolha.equalsIgnoreCase("A")){
+           nomeArma = "Enxada";
+           armaEquipada = enxada;  
+       }else if(escolha.equalsIgnoreCase("B")){
+                armaEquipada = facao;
+                nomeArma = "Facão";
+       }else if(escolha.equalsIgnoreCase("C")){
+                armaEquipada = machado;
+                nomeArma = "Machado";
+       }else {
+                armaEquipada = chaveGrifo;
+                nomeArma = "Chave Grifo";
+       }
+        System.out.println("Você pegou "+nomeArma);    
         System.out.println("Luta");
         lutar(inimigoUm, defendendoInimigoUm);
         decisaoEstrada();
@@ -432,6 +503,7 @@ public class Run {
     public static void decisaoEstrada(){
         cena = 6;
         String escolha;
+        System.out.println("");
         do{ 
             System.out.println("");
             System.out.println("Para qual lado deseja ir? ");
@@ -1014,9 +1086,14 @@ public class Run {
                 jogador[i] = Float.parseFloat(aux[i]);
             }
             cena = Integer.parseInt(bf.readLine());
-
+            String arma = bf.readLine();
+            
+            if(!arma.equalsIgnoreCase("NULL")){
+                carregaArma(arma);
+            }
             fr.close();
             bf.close();
+            personagem();
             return true;
         } catch (IOException ex) {
             Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
@@ -1032,6 +1109,7 @@ public class Run {
             String txtStatus = Arrays.toString(jogador);
             gravarArq.println(txtStatus);
             gravarArq.println(cena);
+            gravarArq.println(nomeArma);
             
             arq.close();
         } catch (IOException ex) {
@@ -1169,6 +1247,26 @@ public class Run {
                 break;
         }
     }
+    public static void carregaArma(String arma){
+        switch(arma.toLowerCase()){
+            case "machado":
+                armaEquipada = machado;
+                nomeArma = "machado";
+                break;
+            case "facao":
+                armaEquipada = facao;
+                nomeArma = "facao";
+                break;
+            case "enxada":
+                armaEquipada = enxada;
+                nomeArma = "enxada";
+                break;
+            case "chaveGrifo":
+                armaEquipada = chaveGrifo;
+                nomeArma = "chave grifo";
+                break;
+        }
+    }
     
     public static void instrucao(){
         System.out.println("Intruções do jogo:");
@@ -1187,14 +1285,15 @@ public class Run {
         //teste
 //        System.out.print("Carregando: ");
 //        for(int i = 0; i <10; i++){
-//            System.out.print("? ");
+//            System.out.print("█");
 //            esperarTempo(0.4f);
 //        }
+//        System.out.print(" 100%");
         //lutar(inimigoUm, defendendoInimigoUm);
         //armar(machado,"Machado");
         //statusGeralPlayer();
         //barraDeStatus(inimigoUm);
-        espacar(5, true);
+//        espacar(5, true);
         // Imagem Inicial
         System.out.println(" "
                + " _____        __ _       _ _         \n" +
@@ -1214,7 +1313,7 @@ public class Run {
 //        System.out.println("Entre qualquer valor para continuar");
 //        entrada.next();
 
-        espacar(10, true);
+//        espacar(10, true);
         
         boolean flag = true;
         while(flag){

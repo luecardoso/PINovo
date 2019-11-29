@@ -22,11 +22,12 @@ public class Run {
     //[0] = vida, [1] = Ataque, [2] = Defesa, [3] = inteligencia, [4] = MaxVida
     //jogador vetor com suas habilidades
     static float[] jogador = {100f,3f,3f,5f, 100f};
+    static float[] jogadorAux = jogador;
     static boolean defendendoJogador = false;
     static float[] armaEquipada;
     
     //Inimigo UM !
-    static float[] inimigoUm = {50f,3f,3f,1f, 50f};
+    static float[] inimigoUm = {50f,3f,3f,3f, 50f};
     static boolean defendendoInimigoUm = false;
     
     //Inimigo DOIS !
@@ -140,32 +141,48 @@ public class Run {
         }
     } 
     
-    public static void ataque(float[] atacante, float[] atacado, boolean def){
+    public static void ajustaPlayer(){
+        for (int i = 0; i < jogador.length; i++) {
+                jogador[i] = jogadorAux[i] - armaEquipada[i];
+            }
+    }
+    
+    public static String[] ataque(float[] atacante, float[] atacado, boolean def){
         Random r = new Random();
         int aux = r.nextInt(12);
         //[3] = inteligencia
         if( aux < 3 - atacante[3] / 4){
             //Errou
+            String[] txt = {"Falho", null};
+            return txt;
         }else if(aux > 12 - atacante[3] / 4){
             //Critico
-            acertado(atacado, def, atacante[1] + atacante[1] * 0.5f);
+            String retorno = acertado(atacado, def, atacante[1] + atacante[1] * 0.5f);
+            String[] txt = {"Critico", retorno};
+            return txt;
         }else{
             //Acerto Normal
-            acertado(atacado, def,atacante[1]);
+            String retorno = acertado(atacado, def,atacante[1]);
+            String[] txt = {"Normal", retorno};
+            return txt;
         }
     }
     
-    public static void acertado(float[] atacado, boolean def, float ataque){
+    public static String acertado(float[] atacado, boolean def, float ataque){
         //Se defendendo Usa o poder total de defesa
         if(def){
             if(ataque > atacado[2]){
                 atacado[0] -= (ataque - atacado[2]) * 8;
+                return null;
             }
+            return "Defendeu";
         //Se nao usa so 50% da defesa
         }else{
             if(ataque > atacado[2] / 2){
                 atacado[0] -= (ataque - atacado[2]/2) * 8;
+                return null;
             }
+            return "Defendeu";
         }
     }
     
@@ -184,8 +201,10 @@ public class Run {
         boolean lutando = true;
         //True Player, False Inimgo
         boolean turno = true;
-        //
-        inimigo[0] = 100;
+        //Inicia vida com max do inimigo
+        inimigo[0] = inimigo[4];
+        //Gera Status para aux do Player(Ajuda a manter o player)
+        statusGeralPlayer();
         Random r = new Random();
         while(lutando){
             barraDeStatus(inimigo);
@@ -198,7 +217,11 @@ public class Run {
                     if(leitor == 1){
                     //Ataca
                         System.out.println("Atacando");
-                        ataque(statusGeralPlayer(), inimigo, inimigoDef );
+                        String[] aux = ataque(jogadorAux, inimigo, inimigoDef);
+                        System.out.println("Seu ataque foi " + aux[0]);
+                        if(aux[1] != null){
+                            System.out.println("O inimigo " + aux[1]);
+                        }
                     }else if(leitor == 2){
                     //Defende
                         System.out.println("Defendendo");
@@ -207,7 +230,7 @@ public class Run {
                 }while(leitor != 1 && leitor != 2);
                 turno =! turno;
             }else{
-                System.out.println("Vez do Adiversario");
+                System.out.println("Vez do Adversario");
                 esperarTempo(1);
                 int resultado = r.nextInt(100);
                 if(resultado < 24){
@@ -217,18 +240,22 @@ public class Run {
                 }
                 if(leitor == 1){
                 //Ataca
-                    System.out.println("Adiversario Atacou");
-                    ataque(inimigo,statusGeralPlayer(), inimigoDef);
+                    System.out.println("Adversario Atacou");
+                    String[] aux = ataque(inimigo,jogadorAux, inimigoDef);
+                    System.out.println("O ataque Adversario foi " + aux[0]);
+                    if(aux[1] != null){
+                        System.out.println("Voce " + aux[1]);
+                    }
                 }else if(leitor == 2){
                 //Defende
-                    System.out.println("Adiversario Defendeu");
+                    System.out.println("Adversario Defendeu");
                     inimigoDef = true;
                 }
                 turno =! turno;
             }
             defendendoJogador = false;
             inimigoDef = false;
-            if(getVida() <= 0){
+            if(jogadorAux[0] <= 0){
                 lutando = false;
                 System.out.println(mensagemDerrota());
             }else if(inimigo[0] <= 0){
@@ -244,6 +271,7 @@ public class Run {
             }
             esperarTempo(1);
         }//Fim Luta
+        ajustaPlayer();
     }
 
     static String mensagemDerrota(){

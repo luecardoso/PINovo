@@ -261,11 +261,13 @@ public class Run {
             }else if(inimigo[0] <= 0){
                 lutando= false;
                 System.out.println(mensagemVitoria());
+                barraDeStatus(inimigo);
                 System.out.println("Você ganhou uns atributos por derrotá-lo.\n");
                 setVida(50);
                 setAtaque(1);
                 setDefesa(1);
                 setInteligencia(1);
+                statusGeralPlayer();
                 personagem();
                 
             }
@@ -297,10 +299,10 @@ public class Run {
     static void personagem(){
         System.out.println("Habilidades do seu personagem: ");
         System.out.println("------------------------");
-        System.out.printf("| Vida: %14s%2s\n",getVida()," |");
-        System.out.printf("| Ataque: %10s%4s\n",getAtaque()," |");
-        System.out.printf("| Defesa: %10s%4s\n",getDefesa()," |");
-        System.out.printf("| Inteligência: %4s%4s\n",getInteligencia()," |");
+        System.out.printf("| Vida: %14s%2s\n",statusGeralPlayer()[0]," |");
+        System.out.printf("| Ataque: %10s%4s\n",statusGeralPlayer()[1]," |");
+        System.out.printf("| Defesa: %10s%4s\n",statusGeralPlayer()[2]," |");
+        System.out.printf("| Inteligência: %4s%4s\n",statusGeralPlayer()[3]," |");
         System.out.println("------------------------");
         System.out.println("");
         System.out.println("");
